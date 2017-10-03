@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/libs/css/bootstrap.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/myStyles/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/libs/css/bootstrap.css}"
+          href="../static/libs/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/myStyles/style.css}" href="../static/myStyles/style.css"/>
+    <script th:src="@{/libs/js/jquery-3.2.1.min.js}" src="../static/libs/js/jquery-3.2.1.min.js"></script>
+    <script th:src="@{/libs/js/bootstrap.min.js}" src="../static/libs/js/bootstrap.min.js"></script>
     <title>FC Respect</title>
 </head>
 <body>
@@ -32,18 +35,26 @@
             </div>
         </div>
     </nav>
+    <div class="container">
+        <div class="page-header text-center">
+            <h2>FC Respect site is welcome you</h2>
+        </div>
+    </div>
     <div class="jumbotron">
-        <img th:src="@{/assets/logo.jpg}" id="logo" alt="Respect Logo"/>
+        <a href="#home">
+        <img th:src="@{/assets/logo.jpg}" src="../static/assets/logo.jpg" id="logo" alt="Respect Logo"/>
+        </a>
     </div>
 </header>
 
-<div class="container">
-    <div class="page-header">
-        <h2>FC Respect site is welcome you</h2>
+<div class="container players">
+    <div class="col-sm-6 col-md-4 col-lg-3 thumbnail">
+        <a href="#" class="thumbnail">
+            <img th:src="@{'/assets/players/'+ ${player.imgName} +'.jpg'}" src="../static/assets/lionel-messi.jpg"
+                 alt="player"/>
+        </a>
     </div>
 </div>
 
-<script th:src="@{/libs/js/jquery-3.2.1.min.js}"></script>
-<script th:src="@{/libs/js/bootstrap.min.js}"></script>
 </body>
 </html>
