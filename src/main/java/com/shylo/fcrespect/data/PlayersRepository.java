@@ -32,4 +32,8 @@ public class PlayersRepository {
         }
         return null;
     }
+
+    public List<Player> getAllPlayers() {
+        return players;
+    }
 }
