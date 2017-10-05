@@ -18,17 +18,14 @@ public class RespectController {
 
     @RequestMapping(value = "/")
     public String homePage(ModelMap modelMap) {
-        List<Player> allPlayers = playersRepository.getAllPlayers();
-        modelMap.put("allPlayers", allPlayers);
         return "home";
     }
 
 
-    @RequestMapping(value = "/players")
-    @ResponseBody
-    public String playersPage(ModelMap modelMap) {
-        Player player = playersRepository.getPlayerByImgName("Den");
-        modelMap.put("player", player);
-        return "players";
+    @RequestMapping(value = "/team")
+    public String teamPage(ModelMap modelMap) {
+        List<Player> allPlayers = playersRepository.getAllPlayers();
+        modelMap.put("allPlayers", allPlayers);
+        return "team";
     }
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/libs/css/bootstrap.css}"
+          href="../static/libs/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/myStyles/style.css}" href="../static/myStyles/style.css"/>
+    <script th:src="@{/libs/js/jquery-3.2.1.min.js}" src="../static/libs/js/jquery-3.2.1.min.js"></script>
+    <script th:src="@{/libs/js/bootstrap.min.js}" src="../static/libs/js/bootstrap.min.js"></script>
+    <title>FC Respect</title>
+</head>
+<body>
+<a th:href="@{${'/'}}">Home</a>
+
+<div class="container players">
+    <div class="row grid">
+        <!--<div class="clearfix visible-lg visible-md"></div>-->
+        <div th:each="player : ${allPlayers}" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 thumbnail">
+            <a href="#" class="thumbnail">
+                <img class="players-imgs" th:src="@{'/assets/players/'+ ${player.imgName} +'.jpg'}"
+                     src="../static/assets/lionel-messi.jpg"
+                     alt="player"/>
+            </a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

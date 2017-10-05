@@ -3,6 +3,7 @@
     width: 100%;
 }
 
+/*ClearFix for player images*/
 @media (min-width: 1200px) {
     .grid .col-lg-4:nth-child(0n+4) {
         clear: both;
