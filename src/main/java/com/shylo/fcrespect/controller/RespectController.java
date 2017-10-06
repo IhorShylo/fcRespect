@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 @Controller
@@ -20,6 +21,7 @@ public class RespectController {
     @RequestMapping(value = "/")
     public String homePage(ModelMap modelMap) {
         modelMap.put("localeCodes", localeCodes);
+        modelMap.put("today", Calendar.getInstance());
         return "home";
     }
 

@@ -30,7 +30,7 @@
                     <li><a href="#club">Club</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li th:each="localeCode : ${localeCodes}"><a th:href="@{'/?lang=' + ${localeCode}}"
+                    <li th:each="localeCode : ${localeCodes}"><a th:href="@{/(lang=${localeCode})}"
                                                                  href="../static/assets/flags/en.png">
                         <img th:src="@{'/assets/flags/' + ${localeCode} + '.png'}" src="../static/assets/flags/en.png"
                              title="English" th:title="#{'lang.' + ${localeCode}}"/>
@@ -42,7 +42,8 @@
     </nav>
     <div class="container">
         <div class="page-header text-center">
-            <h2 th:text="#{home.welcome}">FC Respect site is welcome you!!!</h2>
+            <h2 th:utext="#{home.welcome}">FC Respect site is welcome you!!!</h2>
+            <p>Today is <span th:text="${#calendars.format(today, 'dd MM yyyy')}">06 10 2017</span></p>
         </div>
     </div>
     <div class="jumbotron">
