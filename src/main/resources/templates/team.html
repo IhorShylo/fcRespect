@@ -11,7 +11,7 @@
     <title>FC Respect</title>
 </head>
 <body>
-<a th:href="@{${'/'}}" href="home.html">Home</a>
+<a th:href="@{/}" href="home.html">Home</a>
 
 <div class="container players">
     <div class="row grid">
@@ -26,5 +26,11 @@
     </div>
 </div>
 
+<div class="container">
+    <div class="row">
+        <input type="text" name="fullName" value="Сашка Бабич" th:value="${babich.fullName}" />
+    </div>
+</div>
+<br/>
 </body>
 </html>

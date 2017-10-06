@@ -26,10 +26,15 @@
                 <!-- Содержимое основной части -->
                 <ul class="nav navbar-nav">
                     <li><a href="#news">News</a></li>
-                    <li><a th:href="@{${'/team'}}" href="team.html">Team</a></li>
+                    <li><a th:href="@{/team}" href="team.html">Team</a></li>
                     <li><a href="#club">Club</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li th:each="localeCode : ${localeCodes}"><a th:href="@{'/?lang=' + ${localeCode}}"
+                                                                 href="../static/assets/flags/en.png">
+                        <img th:src="@{'/assets/flags/' + ${localeCode} + '.png'}" src="../static/assets/flags/en.png"
+                             title="English" th:title="#{'lang.' + ${localeCode}}"/>
+                    </a></li>
                     <li><a href="#login">Login</a></li>
                 </ul>
             </div>
@@ -37,12 +42,12 @@
     </nav>
     <div class="container">
         <div class="page-header text-center">
-            <h2>FC Respect site is welcome you!!!</h2>
+            <h2 th:text="#{home.welcome}">FC Respect site is welcome you!!!</h2>
         </div>
     </div>
     <div class="jumbotron">
         <a href="#home">
-            <img th:src="@{/assets/logo.jpg}" src="../static/assets/logo.jpg" id="logo" alt="Respect Logo"/>
+            <img th:src="@{/assets/logo.jpg}" src="../static/assets/logo.jpg" id="logo"/>
         </a>
     </div>
 </header>
