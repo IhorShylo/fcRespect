@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<div th:fragment="footer">
-    <p th:text="#{footer.copy}"></p>
+<div class="container" th:fragment="footer">
+    <div class="row">
+        <div class="col-lg-2 copy"><p th:text="#{footer.copy}">Licence</p></div>
+        <div class="col-lg-8 text-center sponsors"><p>Our sponsors: Adidas, Nike, Umbro...</p></div>
+        <div class="col-lg-2 hz"><p>Some text</p></div>
+    </div>
 </div>
 
 </html>
