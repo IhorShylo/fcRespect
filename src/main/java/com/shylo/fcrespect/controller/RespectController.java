@@ -16,22 +16,22 @@ public class RespectController {
 
     @Autowired
     private PlayersRepository playersRepository;
-    private static List<String> localeCodes = Arrays.asList("en", "ru", "ua");
+    private static List<String> localeCodes = Arrays.asList( "en", "ru", "ua" );
 
-    @RequestMapping(value = "/")
-    public String homePage(ModelMap modelMap) {
-        modelMap.put("localeCodes", localeCodes);
-        modelMap.put("today", Calendar.getInstance());
+    @RequestMapping( value = "/" )
+    public String homePage( ModelMap modelMap ) {
+        modelMap.put( "localeCodes", localeCodes );
+        modelMap.put( "today", Calendar.getInstance() );
         return "home";
     }
 
 
-    @RequestMapping(value = "/team")
-    public String teamPage(ModelMap modelMap) {
+    @RequestMapping( value = "/team" )
+    public String teamPage( ModelMap modelMap ) {
         List<Player> allPlayers = playersRepository.getAllPlayers();
-        Player babich = playersRepository.getPlayerByImgName("Babich");
-        modelMap.put("allPlayers", allPlayers);
-        modelMap.put("babich", babich);
+        Player babich = playersRepository.getPlayerByImgName( "Babich" );
+        modelMap.put( "allPlayers", allPlayers );
+        modelMap.put( "babich", babich );
         return "team";
     }
 }

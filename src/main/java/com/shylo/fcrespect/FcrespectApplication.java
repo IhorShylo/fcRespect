@@ -14,26 +14,26 @@ import java.util.Locale;
 @SpringBootApplication
 public class FcrespectApplication extends WebMvcConfigurerAdapter {
 
-    public static void main(String[] args) {
-        SpringApplication.run(FcrespectApplication.class, args);
+    public static void main( String[] args ) {
+        SpringApplication.run( FcrespectApplication.class, args );
     }
 
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
-        sessionLocaleResolver.setDefaultLocale(Locale.getDefault());
+        sessionLocaleResolver.setDefaultLocale( Locale.getDefault() );
         return sessionLocaleResolver;
     }
 
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
-        localeChangeInterceptor.setParamName("lang");
+        localeChangeInterceptor.setParamName( "lang" );
         return localeChangeInterceptor;
     }
 
     @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(localeChangeInterceptor());
+    public void addInterceptors( InterceptorRegistry registry ) {
+        registry.addInterceptor( localeChangeInterceptor() );
     }
 }
