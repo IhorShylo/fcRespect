@@ -29,16 +29,14 @@
             </div>
         </div>
     </nav>
-    <div class="container">
-        <div class="page-header text-center">
-            <h2 th:utext="#{home.welcome}">FC Respect site is welcome you!!!</h2>
-            <p>Today is <span th:text="${#calendars.format(today, 'dd MM yyyy')}">06 10 2017</span></p>
+    <!-- Заставка -->
+    <div class="splash">
+        <div class="container">
+            <div class="text-center">
+                <h2 th:utext="#{home.welcome}">FC Respect site is welcome you!!!</h2>
+                <p>Today is <span th:text="${#calendars.format(today, 'dd MM yyyy')}">06 10 2017</span></p>
+            </div>
         </div>
-    </div>
-    <div class="jumbotron">
-        <a href="#home">
-            <img th:src="@{/assets/logo.jpg}" src="../static/assets/logo.jpg" id="logo"/>
-        </a>
     </div>
 </header>
 </html>
