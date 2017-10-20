@@ -129,7 +129,8 @@ body
     background: #e31b23;
     color: #fff;
     font-size: 11px;
-    left: 0px;
+    left: 0;
+    right: 0;
 }
 
 .footer .container-fluid {
