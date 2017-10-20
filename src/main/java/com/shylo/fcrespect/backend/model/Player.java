@@ -1,4 +1,4 @@
-package com.shylo.fcrespect.model;
+package com.shylo.fcrespect.backend.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

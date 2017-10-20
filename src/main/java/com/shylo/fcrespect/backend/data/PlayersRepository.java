@@ -1,6 +1,6 @@
-package com.shylo.fcrespect.data;
+package com.shylo.fcrespect.backend.data;
 
-import com.shylo.fcrespect.model.Player;
+import com.shylo.fcrespect.backend.model.Player;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
