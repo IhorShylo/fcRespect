@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="wrapper container-fluid">
-<header th:include="fragments/header :: header"></header>
+<div th:replace="fragments/header :: header"></div>
 
 <div class="container-fluid">
     <div class="row">
@@ -67,7 +67,7 @@
     </div>
 </div>
 
-<footer th:include="fragments/footer :: footer"></footer>
+<div th:replace="fragments/footer :: footer"></div>
 
 </div>
 </body>

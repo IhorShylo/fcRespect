@@ -43,12 +43,17 @@ body
 footer {
     background: red;
     color: #fff;
-    font-size: 16px;
-    height: 150px;
-
+    font-size: 11px;
 }
 
-.container {
+footer .container-fluid {
+    height: 120px;
     padding: 10px 0;
+}
 
+footer .container-fluid .site-map a {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 10px;
+    color: #fff;
 }

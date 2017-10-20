@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<div class="container" th:fragment="footer">
-    <div class="row">
-        <div class="col-lg-2 copy"><p th:text="#{footer.copy}">Licence</p></div>
-        <div class="col-lg-8 text-center sponsors"><p>Our sponsors: Adidas, Nike, Umbro...</p></div>
-        <div class="col-lg-2 hz">
-            <p>Site map</p>
+<footer th:fragment="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 copy text-center"><p th:text="#{footer.copy}">Licence</p></div>
+            <div class="col-lg-8 col-md-2 sponsors text-center"><p>Our sponsors: Adidas, Nike, Umbro...</p></div>
+
+            <div class="col-lg-2 col-md-2 site-map text-center">
+                <h3>Site map</h3>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <a href="#home">Home</a>
+                        <a href="#news">News</a>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <a th:href="@{/team}" href="team.html">Team</a>
+                        <a href="#club">Club</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-
+</footer>
 </html>
