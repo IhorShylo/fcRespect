@@ -51,6 +51,24 @@ footer .container-fluid {
     padding: 10px 0;
 }
 
+footer .container-fluid h3 {
+    border-bottom: 1px solid #fff;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 21px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+}
+
+footer .container-fluid h4 {
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 21px;
+    font-family: "Baskerville Old Face";
+    margin: 30px 0 10px;
+}
+
 footer .container-fluid .site-map a {
     display: block;
     font-size: 13px;
