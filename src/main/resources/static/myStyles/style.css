@@ -15,10 +15,17 @@
     }
 }
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 /* Отступ сверху для содержимого body (высота navbar = 50px)*/
+/* Отступ снизу размером футера*/
 body
 {
     padding-top: 50px;
+    margin-bottom: 120px;
 }
 
 /* navbar */
@@ -113,19 +120,23 @@ body
     width: 100%;
 }
 /*footer*/
-footer {
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 120px;
     background: #e31b23;
     color: #fff;
     font-size: 11px;
 }
 
-footer .container-fluid {
-    height: 120px;
+.footer .container-fluid {
     padding: 10px 0;
 }
 
-footer .container-fluid h3 {
-    border-bottom: 1px solid #fff;
+.footer .container-fluid h3 {
+    border-bottom: 1px solid #ffbbbc;
     color: #ffffff;
     font-size: 14px;
     line-height: 21px;
@@ -134,7 +145,7 @@ footer .container-fluid h3 {
     text-transform: uppercase;
 }
 
-footer .container-fluid h4 {
+.footer .container-fluid h4 {
     color: #ffffff;
     font-size: 14px;
     line-height: 21px;
@@ -142,7 +153,7 @@ footer .container-fluid h4 {
     margin: 30px 0 10px;
 }
 
-footer .container-fluid .site-map a {
+.footer .container-fluid .site-map a {
     display: block;
     font-size: 13px;
     margin-bottom: 10px;
