@@ -1,73 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/libs/css/bootstrap.css}"
-          href="../static/libs/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/myStyles/style.css}" href="../static/myStyles/style.css"/>
-    <script th:src="@{/libs/js/jquery-3.2.1.min.js}" src="../static/libs/js/jquery-3.2.1.min.js"></script>
-    <script th:src="@{/libs/js/bootstrap.min.js}" src="../static/libs/js/bootstrap.min.js"></script>
-    <title>FC Respect</title>
-</head>
+<div th:replace="fragments/head:: head"></div>
 <body>
 <div class="wrapper container-fluid">
-<div th:replace="fragments/header :: header"></div>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-2">
-            <p>
-            <h1>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dolorem dolores ducimus expedita facere
-                fugit maiores obcaecati odio. Accusantium amet aperiam explicabo laboriosam magnam quod? Alias obcaecati
-                omnis tempore voluptatibus.
-            </h1></p>
-        </div>
-        <div class="col-lg-2">
-            <p>
-            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dolorem dolores ducimus expedita facere
-                fugit
-                maiores obcaecati odio. Accusantium amet aperiam explicabo laboriosam magnam quod? Alias obcaecati omnis
-                tempore
-                voluptatibus.</h1></p>
-        </div>
-        <div class="col-lg-2">
-            <p>
-            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dolorem dolores ducimus expedita facere
-                fugit
-                maiores obcaecati odio. Accusantium amet aperiam explicabo laboriosam magnam quod? Alias obcaecati omnis
-                tempore
-                voluptatibus.</h1></p>
-        </div>
-        <div class="col-lg-2">
-            <p>
-            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dolorem dolores ducimus expedita facere
-                fugit
-                maiores obcaecati odio. Accusantium amet aperiam explicabo laboriosam magnam quod? Alias obcaecati omnis
-                tempore
-                voluptatibus.</h1></p>
-        </div>
-        <div class="col-lg-2">
-            <p>
-            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dolorem dolores ducimus expedita facere
-                fugit
-                maiores obcaecati odio. Accusantium amet aperiam explicabo laboriosam magnam quod? Alias obcaecati omnis
-                tempore
-                voluptatibus.</h1></p>
-        </div>
-        <div class="col-lg-2">
-            <p>
-            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dolorem dolores ducimus expedita facere
-                fugit
-                maiores obcaecati odio. Accusantium amet aperiam explicabo laboriosam magnam quod? Alias obcaecati omnis
-                tempore
-                voluptatibus.</h1></p>
-        </div>
-    </div>
-</div>
+    <div th:replace="fragments/header :: header"></div>
 
-<div th:replace="fragments/footer :: footer"></div>
+    <div th:replace="@{'views/' + ${content}} :: ${content}"></div>
+
+    <div th:replace="fragments/footer :: footer"></div>
 
 </div>
 </body>

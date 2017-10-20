@@ -9,7 +9,7 @@
             <!-- Заголовок -->
             <div class="navbar-header">
                 <!-- Бренд или название сайта (отображается в левой части меню) -->
-                <a class="navbar-brand" href="#home">Home</a>
+                <a class="navbar-brand" th:href="@{/}" href="../home.html">Home</a>
             </div>
             <!-- Основная часть меню (может содержать ссылки, формы и другие элементы) -->
             <div class="collapse navbar-collapse" id="navbar-main">
@@ -35,7 +35,6 @@
         <div class="container">
             <div class="text-center">
                 <h2 th:utext="#{home.welcome}">FC Respect site is welcome you!!!</h2>
-                <p>Today is <span th:text="${#calendars.format(today, 'dd MM yyyy')}">06 10 2017</span></p>
             </div>
         </div>
     </div>

@@ -21,7 +21,8 @@ public class RespectController {
     @RequestMapping( value = "/" )
     public String homePage( ModelMap modelMap ) {
         modelMap.put( "localeCodes", localeCodes );
-        modelMap.put( "today", Calendar.getInstance() );
+
+        modelMap.addAttribute("content", "homeView");
         return "home";
     }
 
@@ -32,6 +33,8 @@ public class RespectController {
         Player babich = playersRepository.getPlayerByImgName( "Babich" );
         modelMap.put( "allPlayers", allPlayers );
         modelMap.put( "babich", babich );
-        return "team";
+
+        modelMap.addAttribute("content", "teamView");
+        return "home";
     }
 }

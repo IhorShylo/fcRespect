@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="teamView">
+    <div class="container players">
+        <div class="row grid">
+            <!--<div class="clearfix visible-lg visible-md"></div>-->
+            <div th:each="player : ${allPlayers}" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 thumbnail">
+                <a href="#" class="thumbnail">
+                    <img class="players-imgs" th:src="@{'/assets/players/'+ ${player.imgName} +'.jpg'}"
+                         src="../../static/assets/lionel-messi.jpg"
+                         alt="player"/>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <input type="text" name="fullName" value="Сашка Бабич" th:value="${babich.fullName}"/>
+        </div>
+    </div>
+    <br/>
+</div>
+</html>
