@@ -17,12 +17,9 @@ public class RespectController {
 
     @Autowired
     private PlayersRepository playersRepository;
-    private static List<String> localeCodes = Arrays.asList( "en", "ru", "ua" );
 
     @RequestMapping( value = "/" )
     public String homePage( ModelMap modelMap ) {
-        modelMap.put( ProjectConstants.LOCALE_CODES_KEY, localeCodes );
-
         modelMap.addAttribute( ProjectConstants.CONTENT_KEY, ViewConstants.HOME_VIEW );
         return "home";
     }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<header th:fragment="header">
+<header th:fragment="header" th:with="localeCodes = ${ {'en', 'ru', 'ua'} }" >
     <!-- Классы navbar и navbar-default (базовые классы меню) -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <!-- Контейнер (определяет ширину Navbar) -->
@@ -20,7 +20,7 @@
                     <li><a href="#club">Club</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li th:each="localeCode : ${localeCodes}"><a th:href="@{/(lang=${localeCode})}"
+                    <li th:each="localeCode : ${localeCodes}"><a th:href="@{''(lang=${localeCode})}"
                                                                  href="../static/assets/flags/en.png">
                         <img th:src="@{'/assets/flags/' + ${localeCode} + '.png'}" src="../static/assets/flags/en.png"
                              title="English" th:title="#{'lang.' + ${localeCode}}"/>
