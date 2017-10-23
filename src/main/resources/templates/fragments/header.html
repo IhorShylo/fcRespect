@@ -20,6 +20,7 @@
                     <li><a href="#club">Club</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <!--'' - current url-->
                     <li th:each="localeCode : ${localeCodes}"><a th:href="@{''(lang=${localeCode})}"
                                                                  href="../static/assets/flags/en.png">
                         <img th:src="@{'/assets/flags/' + ${localeCode} + '.png'}" src="../static/assets/flags/en.png"
