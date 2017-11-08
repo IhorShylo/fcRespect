@@ -12,13 +12,13 @@ public class Player {
     private String fullName;
     private LocalDate birthDay;
     private String position;
-    private String imgName;
+    private String imageName;
 
-    public Player(String fullName, LocalDate birthDay, String position, String imgName) {
+    public Player(String fullName, LocalDate birthDay, String position, String imageName ) {
         this.fullName = fullName;
         this.birthDay = birthDay;
         this.position = position;
-        this.imgName = imgName;
+        this.imageName = imageName;
     }
 
     public Player() {

@@ -28,7 +28,7 @@ public class RespectController {
     @RequestMapping( value = "/team" )
     public String teamPage( ModelMap modelMap ) {
         List<Player> allPlayers = playersRepository.getAllPlayers();
-        Player babich = playersRepository.getPlayerByImgName( "Babich" );
+        Player babich = playersRepository.getPlayerByImgName( "Babich.jpg" );
         modelMap.put( "allPlayers", allPlayers );
         modelMap.put( "babich", babich );
 

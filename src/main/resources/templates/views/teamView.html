@@ -7,7 +7,7 @@
             <!--<div class="clearfix visible-lg visible-md"></div>-->
             <div th:each="player : ${allPlayers}" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 thumbnail">
                 <a href="#" class="thumbnail">
-                    <img class="players-imgs" th:src="@{'/assets/players/'+ ${player.imgName} +'.jpg'}"
+                    <img class="players-imgs" th:src="@{'/assets/players/'+ ${player.imageName}}"
                          src="../../static/assets/lionel-messi.jpg"
                          alt="player"/>
                 </a>
