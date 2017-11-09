@@ -1,4 +1,4 @@
-INSERT INTO players (players_id, full_name, birthday, imageName, position) VALUES
+INSERT INTO players (players_id, full_name, birthday, image_name, position) VALUES
   (1, 'Бабич Александр', '1991-02-05', 'Babich.jpg', 'Midfielder'),
   (2, 'Брусиловский Дмитрий', '1991-5-3', 'Brusilovskiy.jpg', 'Midfielder'),
   (3, 'Двирный Александр', '1985-01-01', 'Dvirnuy.jpg', 'Defender'),
