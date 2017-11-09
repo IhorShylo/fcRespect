@@ -1,0 +1,15 @@
+INSERT INTO players (players_id, full_name, birthday, imageName, position) VALUES
+  (1, 'Бабич Александр', '1991-02-05', 'Babich.jpg', 'Midfielder'),
+  (2, 'Брусиловский Дмитрий', '1991-5-3', 'Brusilovskiy.jpg', 'Midfielder'),
+  (3, 'Двирный Александр', '1985-01-01', 'Dvirnuy.jpg', 'Defender'),
+  (4, 'Д.Денис', '1988-03-05', 'Den.jpg', 'Goalkeaper'),
+  (5, 'Федя', '1991-08-018', 'Fedya.jpg', 'Midfielder'),
+  (6, 'Козырь Антон', '1989-06-06', 'Kozyr.jpg', 'Midfielder'),
+  (7, 'Лозница Богдан', '1988-10-12', 'Loznytsa.jpg', 'Defender'),
+  (8, 'Лысый Андрей', '1988-06-07', 'Lysyi.jpg', 'Midfielder'),
+  (9, 'Рускевич Максим', '1985-11-26', 'Maks.jpg', 'Forward'),
+  (10, 'Осадчий Сергей', '1991-7-14', 'Osadchyi.jpg', 'Defender'),
+  (11, 'Лубяный Павел', '1990-01-20', 'Pasha.jpg', 'Midfielder'),
+  (12, 'Шило Игорь', '1989-12-02', 'Shylo.jpg', 'Defender'),
+  (13, 'Сороченко Дмитрий', '1988-5-11', 'Sorochenko.jpg', 'Midfielder'),
+  (14, 'Кужелев Анатолий', '1993-4-4', 'Tolik.jpg', 'Forward');

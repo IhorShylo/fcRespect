@@ -9,6 +9,7 @@ import java.util.List;
 
 @Component
 public class PlayersRepository {
+/*
     private static final List<Player> players = Arrays.asList(
             new Player("Бабич Александр", LocalDate.of(1991, 2, 5), "Midfielder", "Babich.jpg"),
             new Player("Брусиловский Дмитрий", LocalDate.of(1991, 5, 3), "Midfielder", "Brusilovskiy.jpg"),
@@ -25,15 +26,16 @@ public class PlayersRepository {
             new Player("Сороченко Дмитрий", LocalDate.of(1988, 5, 11), "Midfielder", "Sorochenko.jpg"),
             new Player("Кужелев Анатолий", LocalDate.of(1993, 4, 4), "Forward", "Tolik.jpg")
     );
+*/
 
-    public Player getPlayerByImgName(String imgName) {
+   /* public Player getPlayerByImgName(String imgName) {
         for (Player player : players) {
             if (player.getImageName().equals(imgName)) return player;
         }
         return null;
-    }
+    }*/
 
-    public List<Player> getAllPlayers() {
-        return players;
-    }
+//    public List<Player> getAllPlayers() {
+//        return players;
+//    }
 }

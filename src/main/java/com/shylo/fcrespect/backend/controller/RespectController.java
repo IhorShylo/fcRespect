@@ -2,6 +2,7 @@ package com.shylo.fcrespect.backend.controller;
 
 import com.shylo.fcrespect.backend.constants.ProjectConstants;
 import com.shylo.fcrespect.backend.constants.ViewConstants;
+import com.shylo.fcrespect.backend.dao.impl.PlayerDao;
 import com.shylo.fcrespect.backend.data.PlayersRepository;
 import com.shylo.fcrespect.backend.model.Player;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -17,6 +17,9 @@ public class RespectController {
 
     @Autowired
     private PlayersRepository playersRepository;
+
+    @Autowired
+    PlayerDao playerDao;
 
     @RequestMapping( value = "/" )
     public String homePage( ModelMap modelMap ) {
@@ -27,8 +30,8 @@ public class RespectController {
 
     @RequestMapping( value = "/team" )
     public String teamPage( ModelMap modelMap ) {
-        List<Player> allPlayers = playersRepository.getAllPlayers();
-        Player babich = playersRepository.getPlayerByImgName( "Babich.jpg" );
+        List<Player> allPlayers = playerDao.findAll();
+        Player babich = playerDao.findOne( 1 );
         modelMap.put( "allPlayers", allPlayers );
         modelMap.put( "babich", babich );
 
