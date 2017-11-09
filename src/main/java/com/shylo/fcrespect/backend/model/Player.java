@@ -26,7 +26,7 @@ public class Player implements Serializable {
     @Column( name = "full_name" )
     private String fullName;
 
-    @Column
+    @Column (name = "birthday")
     private LocalDate birthday;
 
     @Column( name = "image_name" )
