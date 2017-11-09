@@ -26,8 +26,8 @@ public class Player implements Serializable {
     @Column( name = "full_name" )
     private String fullName;
 
-    @Temporal( TemporalType.TIMESTAMP )
-    private Date birthday;
+    @Column
+    private LocalDate birthday;
 
     @Column( name = "image_name" )
     private String imageName;
@@ -35,7 +35,7 @@ public class Player implements Serializable {
     @Column( name = "position" )
     private String position;
 
-    public Player( String fullName, Date birthday, String position, String imageName ) {
+    public Player( String fullName, LocalDate birthday, String position, String imageName ) {
         this.fullName = fullName;
         this.birthday = birthday;
         this.position = position;
