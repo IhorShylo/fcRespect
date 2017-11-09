@@ -1,4 +1,4 @@
--- CREATE DATABASE fcrespect_db;
+CREATE DATABASE fcrespect_db;
 
 CREATE TABLE IF NOT EXISTS players (
   players_id INTEGER PRIMARY KEY NOT NULL DEFAULT NEXTVAL('players_ids'),
