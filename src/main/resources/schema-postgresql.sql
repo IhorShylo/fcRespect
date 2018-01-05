@@ -6,10 +6,10 @@ CREATE TABLE IF NOT EXISTS players (
   birthday   DATE                NOT NULL,
   image_name  VARCHAR(60),
   position   INTEGER             NOT NULL,
-  FOREIGN KEY (position) REFERENCES POSITION (position_id)
+  FOREIGN KEY (position) REFERENCES POSITION (id)
 );
 
 CREATE TABLE IF NOT EXISTS position (
-  position_id    INTEGER     NOT NULL PRIMARY KEY DEFAULT NEXTVAL('position_ids'),
-  position_title VARCHAR(30) NOT NULL UNIQUE
+  id    INTEGER     NOT NULL PRIMARY KEY DEFAULT NEXTVAL('position_ids'),
+  code VARCHAR(30) NOT NULL UNIQUE
 );

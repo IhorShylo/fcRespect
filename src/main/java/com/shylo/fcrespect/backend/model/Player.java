@@ -1,17 +1,13 @@
 package com.shylo.fcrespect.backend.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import com.shylo.fcrespect.backend.enums.Position;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
-@Getter
-@Setter
-@EqualsAndHashCode
+@Data
 @Entity
 @Table( name = "players" )
 public class Player implements Serializable {
@@ -21,7 +17,7 @@ public class Player implements Serializable {
     @Id
     @Column( name = "players_id" )
     @GeneratedValue( strategy = GenerationType.IDENTITY )
-    private long id;
+    private Integer id;
 
     @Column( name = "full_name" )
     private String fullName;
@@ -33,15 +29,7 @@ public class Player implements Serializable {
     private String imageName;
 
     @Column( name = "position" )
-    private String position;
+    @Enumerated(EnumType.ORDINAL)
+    private Position position;
 
-    public Player( String fullName, LocalDate birthday, String position, String imageName ) {
-        this.fullName = fullName;
-        this.birthday = birthday;
-        this.position = position;
-        this.imageName = imageName;
-    }
-
-    public Player() {
-    }
 }
