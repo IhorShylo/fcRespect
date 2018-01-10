@@ -28,8 +28,8 @@ public class Player implements Serializable {
     @Column( name = "image_name" )
     private String imageName;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "position_id")
+    @OneToOne( fetch = FetchType.EAGER )
+    @JoinColumn( name = "position_id" )
     private Position position;
 
 }
