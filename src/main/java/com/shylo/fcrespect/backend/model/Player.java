@@ -1,26 +1,35 @@
 package com.shylo.fcrespect.backend.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@EqualsAndHashCode
-public class Player {
+
+@Entity
+@Data
+@Table( schema = "storage", name = "players" )
+public class Player implements Serializable {
+
+    private static final long serialVersionUID = 2553354636906318627L;
+
+    @Id
+    @Column( name = "player_id" )
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    private Integer id;
+
+    @Column( name = "full_name" )
     private String fullName;
-    private LocalDate birthDay;
-    private String position;
+
+    @Column( name = "birthday" )
+    private LocalDate birthday;
+
+    @Column( name = "image_name" )
     private String imageName;
 
-    public Player(String fullName, LocalDate birthDay, String position, String imageName ) {
-        this.fullName = fullName;
-        this.birthDay = birthDay;
-        this.position = position;
-        this.imageName = imageName;
-    }
+    @OneToOne( fetch = FetchType.EAGER )
+    @JoinColumn( name = "position_id" )
+    private Position position;
 
-    public Player() {
-    }
 }
