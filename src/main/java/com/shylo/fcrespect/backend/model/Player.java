@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-@Table( name = "players" )
+@Table( schema = "storage", name = "players" )
 public class Player implements Serializable {
 
     private static final long serialVersionUID = 2553354636906318627L;

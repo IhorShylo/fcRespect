@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Entity
 @Data
-@Table( name = "positions" )
+@Table( schema = "storage", name = "positions" )
 public class Position implements Serializable {
 
     private static final long serialVersionUID = 8304731063153683941L;

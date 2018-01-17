@@ -1,10 +1,10 @@
-INSERT INTO positions (position_id, position_value) VALUES
+INSERT INTO storage.positions (position_id, position_value) VALUES
   (0, 'Goalkeeper'),
   (1, 'Defender'),
   (2, 'Midfielder'),
   (3, 'Forward');
 
-INSERT INTO players (player_id, full_name, birthday, image_name, position_id) VALUES
+INSERT INTO storage.players (player_id, full_name, birthday, image_name, position_id) VALUES
 (1, 'Бабич Александр', '1991-02-05', 'Babich.jpg', 2),
 (2, 'Брусиловский Дмитрий', '1991-5-3', 'Brusilovskiy.jpg', 2),
 (3, 'Двирный Александр', '1985-01-01', 'Dvirnuy.jpg', 1),
