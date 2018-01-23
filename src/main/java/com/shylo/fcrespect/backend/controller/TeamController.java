@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.HandlerMapping;
 
@@ -16,36 +17,35 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-public class RespectController {
+@RequestMapping(value = "/team")
+public class TeamController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
     @Autowired
     PlayerDao playerDao;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RespectController.class);
-
-    @RequestMapping( value = "/" )
-    public String homePage( ModelMap modelMap, HttpServletRequest request ) {
-        String restOfTheUrl = (String) request.getAttribute(
-                HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
-        LOGGER.info("Enter in controller with path - {}", restOfTheUrl);
-        modelMap.addAttribute( ProjectConstants.CONTENT_KEY, ViewConstants.HOME_VIEW );
-        return "home";
-    }
-
-
-    @RequestMapping( value = "/team" )
-    public String teamPage( ModelMap modelMap,  HttpServletRequest request) {
-
+    @RequestMapping
+    public String teamPage(ModelMap modelMap, HttpServletRequest request) {
         String restOfTheUrl = (String) request.getAttribute(
                 HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
         LOGGER.info("Enter in controller with path - {}", restOfTheUrl);
 
         List<Player> allPlayers = playerDao.findAll();
-        Player babich = playerDao.findOne( 1 );
-        modelMap.put( "allPlayers", allPlayers );
-        modelMap.put( "babich", babich );
-
-        modelMap.addAttribute( ProjectConstants.CONTENT_KEY, ViewConstants.TEAM_VIEW );
-        return "home";
+        modelMap.put("allPlayers", allPlayers);
+        modelMap.addAttribute(ProjectConstants.CONTENT_KEY, ViewConstants.TEAM_VIEW);
+        return ProjectConstants.HOME_PAGE_KEY;
     }
+
+    @RequestMapping(value = "/{id}")
+    public String playerDetailPage(ModelMap modelMap, @PathVariable int id, HttpServletRequest request) {
+        String restOfTheUrl = (String) request.getAttribute(
+                HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
+        LOGGER.info("Enter in controller with path - {}", restOfTheUrl);
+
+        Player player = playerDao.findOne(id);
+        modelMap.put("player", player);
+        modelMap.addAttribute(ProjectConstants.CONTENT_KEY, ViewConstants.PLAYER_DETAILS_VIEW);
+        return ProjectConstants.HOME_PAGE_KEY;
+    }
+
 }

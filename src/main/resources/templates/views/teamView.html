@@ -6,7 +6,8 @@
         <div class="row grid">
             <!--<div class="clearfix visible-lg visible-md"></div>-->
             <div th:each="player : ${allPlayers}" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 thumbnail">
-                <a href="#" class="thumbnail">
+                <a href="#" th:href="@{'/team/' + ${player.id}}"
+                   class="thumbnail">
                     <img class="players-imgs" th:src="@{'/assets/players/'+ ${player.imageName}}"
                          src="../../static/assets/lionel-messi.jpg"
                          alt="player"/>
@@ -14,12 +15,5 @@
             </div>
         </div>
     </div>
-
-    <div class="container">
-        <div class="row">
-            <input type="text" name="fullName" value="Сашка Бабич" th:value="${babich.fullName}"/>
-        </div>
-    </div>
-    <br/>
 </div>
 </html>
