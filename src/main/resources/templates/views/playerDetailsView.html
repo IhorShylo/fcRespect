@@ -3,14 +3,30 @@
 
 <div th:fragment="playerDetailsView">
     <div class="container-fluid">
-        <div class="row col-md-6">
-            <h1 th:text="${player.fullName}">Player Name</h1>
+        <div class="row">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="text-center" th:text="${player.fullName}">Player Name</h1>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <a href="#" class="thumbnail">
+                    <img class="players-imgs" th:src="@{'/assets/players/'+ ${player.imageName}}"
+                         src="../../static/assets/lionel-messi.jpg"
+                         alt="player"/>
+                </a>
+            </div>
 
-            <a href="#" class="thumbnail">
-                <img class="players-imgs" th:src="@{'/assets/players/'+ ${player.imageName}}"
-                     src="../../static/assets/lionel-messi.jpg"
-                     alt="player"/>
-            </a>
+            <div class="col-md-6">
+                <ul>
+                    <li><h2>Position</h2> <span th:text="${player.position.value}">Player position must be here</span>
+                    </li>
+                </ul>
+                <ul>
+                    <li><h2>Birthday</h2> <span th:text="${#temporals.format(player.birthday, 'dd MM yyyy')}">Player birthday must be here</span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

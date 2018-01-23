@@ -67,6 +67,10 @@
 			<!--cancel transitive-->
 			<optional>true</optional>
 		</dependency>
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-java8time</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
