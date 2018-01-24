@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<header th:fragment="header" th:with="localeCodes = ${ {'en', 'ru', 'ua'} }" >
+<header th:fragment="header" th:with="localeCodes = ${ {'en', 'ru', 'ua'} }">
     <!-- Классы navbar и navbar-default (базовые классы меню) -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <!-- Контейнер (определяет ширину Navbar) -->
@@ -9,15 +9,15 @@
             <!-- Заголовок -->
             <div class="navbar-header">
                 <!-- Бренд или название сайта (отображается в левой части меню) -->
-                <a class="navbar-brand" th:href="@{/}" href="../home.html">Home</a>
+                <a class="navbar-brand" th:text="#{title.home}" th:href="@{/}" href="../home.html">Home</a>
             </div>
             <!-- Основная часть меню (может содержать ссылки, формы и другие элементы) -->
             <div class="collapse navbar-collapse" id="navbar-main">
                 <!-- Содержимое основной части -->
                 <ul class="nav navbar-nav">
-                    <li><a href="#news">News</a></li>
-                    <li><a th:href="@{/team}" href="team.html">Team</a></li>
-                    <li><a href="#club">Club</a></li>
+                    <li><a th:text="#{title.news}" href="#news">News</a></li>
+                    <li><a th:text="#{title.team}" th:href="@{/team}" href="team.html">Team</a></li>
+                    <li><a th:text="#{title.club}" href="#club">Club</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <!--'' - current url-->
@@ -26,7 +26,7 @@
                         <img th:src="@{'/assets/flags/' + ${localeCode} + '.png'}" src="../static/assets/flags/en.png"
                              title="English" th:title="#{'lang.' + ${localeCode}}"/>
                     </a></li>
-                    <li><a href="#login">Login</a></li>
+                    <li><a href="#login" th:text="#{title.login}">Login</a></li>
                 </ul>
             </div>
         </div>

@@ -19,25 +19,26 @@
 
             <div class="col-md-6">
                 <ul>
-                    <li><h2>Position</h2> <span th:text="${player.position.value}">Player position must be here</span>
+                    <li><h2 th:text="#{player.details.position}">Position</h2> <span th:text="${player.position.value}">Player position must be here</span>
                     </li>
                 </ul>
                 <ul>
-                    <li><h2>Birthday</h2> <span th:text="${#temporals.format(player.birthday, 'dd MM yyyy')}">Player birthday must be here</span>
+                    <li><h2 th:text="#{player.details.birthday}">Birthday</h2> <span
+                            th:text="${#temporals.format(player.birthday, 'dd MM yyyy')}">Player birthday must be here</span>
                     </li>
                 </ul>
                 <ul>
-                    <li><h2>Height</h2> <span th:text="${player.height}">Player height must be here</span>
+                    <li><h2 th:text="#{player.details.height}">Height</h2> <span th:text="${player.height}">Player height must be here</span>
                     </li>
                 </ul>
                 <ul>
-                    <li><h2>Born</h2> <span th:text="${player.birthPlace}">Player birthPlace must be here</span>
+                    <li><h2 th:text="#{player.details.born}">Born</h2> <span th:text="${player.birthPlace}">Player birthPlace must be here</span>
                     </li>
                 </ul>
 
                 <hr/>
                 <div>
-                    <i><h2 class="text-center">About player</h2></i>
+                    <i><h2 class="text-center" th:text="#{player.details.about}">About player</h2></i>
                     <p class="text-justify" th:text="${player.about}">Lorem ipsum dolor sit amet, consectetur
                         adipisicing elit. Adipisci autem et labore magni reprehenderit voluptates, voluptatibus?
                         Incidunt, perferendis, qui! Blanditiis cupiditate dolores eum exercitationem hic optio quae quo
@@ -46,14 +47,14 @@
 
                 <hr/>
                 <div>
-                    <i><h2 class="text-center">Statistic</h2></i>
+                    <i><h2 class="text-center" th:text="#{player.details.statistic.title}">Statistic</h2></i>
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>In club since</th>
-                            <th>Games</th>
-                            <th>Goals</th>
-                            <th>Assists</th>
+                            <th th:text="#{player.details.statistic.since}">In club since</th>
+                            <th th:text="#{player.details.statistic.games}">Games</th>
+                            <th th:text="#{player.details.statistic.goals}">Goals</th>
+                            <th th:text="#{player.details.statistic.assists}">Assists</th>
                         </tr>
                         </thead>
                         <tbody>
