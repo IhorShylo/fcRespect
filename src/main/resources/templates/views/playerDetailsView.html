@@ -26,6 +26,12 @@
                     <li><h2>Birthday</h2> <span th:text="${#temporals.format(player.birthday, 'dd MM yyyy')}">Player birthday must be here</span>
                     </li>
                 </ul>
+
+                <hr/>
+                <div>
+                    <i><h2 class="text-center">About player</h2></i>
+                    <p class="text-justify" th:text="${player.about}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem et labore magni reprehenderit voluptates, voluptatibus? Incidunt, perferendis, qui! Blanditiis cupiditate dolores eum exercitationem hic optio quae quo quos suscipit!</p>
+                </div>
             </div>
         </div>
     </div>

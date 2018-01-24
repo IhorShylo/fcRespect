@@ -1,6 +1,7 @@
 package com.shylo.fcrespect.backend.model;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,7 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-@Table( schema = "storage", name = "players" )
+@Table( name = "players" )
 public class Player implements Serializable {
 
     private static final long serialVersionUID = 2553354636906318627L;
@@ -31,5 +32,10 @@ public class Player implements Serializable {
     @OneToOne( fetch = FetchType.EAGER )
     @JoinColumn( name = "position_id" )
     private Position position;
+
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
+    @Column (name = "about")
+    private String about;
 
 }
