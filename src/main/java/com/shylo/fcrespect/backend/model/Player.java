@@ -45,6 +45,6 @@ public class Player implements Serializable {
     private String birthPlace;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "statistic_id", nullable = false)
+    @JoinColumn(name = "statistic_id", nullable = false, unique = true)
     private Statistic statistic = new Statistic();
 }

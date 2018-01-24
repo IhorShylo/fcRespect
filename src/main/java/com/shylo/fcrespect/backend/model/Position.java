@@ -17,6 +17,6 @@ public class Position implements Serializable {
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Integer id;
 
-    @Column( name = "position_value", nullable = false, updatable = false )
+    @Column( name = "position_value", nullable = false, updatable = false, unique = true)
     private String value;
 }
