@@ -28,6 +28,9 @@ body
     margin-bottom: 120px;
 }
 
+h2{
+    text-align: center;
+}
 /* navbar */
 .navbar-default {
     background-color: #e31b23;
