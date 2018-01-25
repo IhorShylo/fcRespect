@@ -15,9 +15,11 @@
             <div class="collapse navbar-collapse" id="navbar-main">
                 <!-- Содержимое основной части -->
                 <ul class="nav navbar-nav">
-                    <li><a th:text="#{title.news}" href="#news">News</a></li>
-                    <li><a th:text="#{title.team}" th:href="@{/team}" href="team.html">Team</a></li>
-                    <li><a th:text="#{title.club}" href="#club">Club</a></li>
+                    <li><a th:text="#{title.news}" th:href="@{/news}" href="../views/newsView.html">News</a></li>
+                    <li><a th:text="#{title.team}" th:href="@{/team}" href="../views/teamView.html">Team</a></li>
+                    <li><a th:text="#{title.history}" th:href="@{/history}" href="../views/historyView.html">History</a></li>
+                    <li><a th:text="#{title.honours}" th:href="@{/honours}" href="../views/honoursView.html">Honours</a></li>
+                    <li><a th:text="#{title.contacts}" th:href="@{/contacts}" href="../views/contactsView.html">Contacts</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <!--'' - current url-->
