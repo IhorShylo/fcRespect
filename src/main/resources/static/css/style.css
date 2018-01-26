@@ -180,7 +180,10 @@ h2 {
     color: #fff;
 }
 
-/*----------------------------------------------------*/
+/*Contacts page*/
+.contacts-article {
+    margin-bottom: 25px;
+}
 
 .socialIcons {
     padding: 0;
