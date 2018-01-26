@@ -1,25 +1,20 @@
-$("#contactForm").submit(function(event){
+$(function() {
     // cancels the form submission
-    console.log("HELLO FROM JS");
-    event.preventDefault();
-    submitForm();
+    $("#form-submit").click(submitForm);
 });
 
 function submitForm(){
     // Initiate Variables With Form Content
-    console.log("HELLO FROM JS SUBMIT FORM METHOD");
     var name = $("#name").val();
     var email = $("#email").val();
     var message = $("#message").val();
 
     $.ajax({
         type: "POST",
-        url: "/form-process",
+        url: "/contacts/form-process",
         data: "name=" + name + "&email=" + email + "&message=" + message,
-        success : function(text){
-            if (text == "success"){
+        success : function(status){
                 formSuccess();
-            }
         }
     });
 }
