@@ -4,11 +4,13 @@
         clear: both;
     }
 }
+
 @media (min-width: 1024px) and (max-width: 1200px) {
     .grid .col-md-4:nth-child(0n+4) {
         clear: both;
     }
 }
+
 @media (min-width: 768px) and (max-width: 1199px) {
     .grid .col-sm-6:nth-child(0n+11) {
         clear: both;
@@ -22,106 +24,119 @@ html {
 
 /* Отступ сверху для содержимого body (высота navbar = 50px)*/
 /* Отступ снизу размером футера*/
-body
-{
+body {
     padding-top: 50px;
     margin-bottom: 120px;
 }
 
-h2{
+h2 {
     text-align: center;
 }
+
 /* navbar */
 .navbar-default {
     background-color: #e31b23;
     border-color: #c0392b;;
 }
+
 /* Title */
 .navbar-default .navbar-brand {
     color: #fff;
 }
+
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
     color: #ffbbbc;
 }
+
 /* Link */
 .navbar-default .navbar-nav > li > a {
     color: #fff;
 }
+
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
     color: #ffbbbc;
 }
+
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
     color: #ffbbbc;
     background-color: #c0392b;
 }
+
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
     color: #ffbbbc;
     background-color: #c0392b;
 }
+
 /* Caret */
 .navbar-default .navbar-nav > .dropdown > a .caret {
     border-top-color: #ffbbbc;
     border-bottom-color: #ffbbbc;
 }
+
 .navbar-default .navbar-nav > .dropdown > a:hover .caret,
 .navbar-default .navbar-nav > .dropdown > a:focus .caret {
     border-top-color: #e31b23;
     border-bottom-color: #e31b23;
 }
+
 .navbar-default .navbar-nav > .open > a .caret,
 .navbar-default .navbar-nav > .open > a:hover .caret,
 .navbar-default .navbar-nav > .open > a:focus .caret {
     border-top-color: #ffbbbc;
     border-bottom-color: #ffbbbc;
 }
+
 /* Mobile version */
 .navbar-default .navbar-toggle {
     border-color: #c0392b;
 }
+
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
     background-color: #c0392b;
 }
+
 .navbar-default .navbar-toggle .icon-bar {
     background-color: #fff;
 }
+
 @media (max-width: 767px) {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a {
         color: #fff;
     }
+
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
         color: #ffbbbc;
     }
 }
 
-
-
 /* Заставка */
 .splash {
     /* Отступ для содержимого, помещенного в splash */
-    padding:9em 0 2em;
+    padding: 9em 0 2em;
     /* Картинка, которая используются для splash */
-    background-image:url(../assets/logo.jpg);
+    background-image: url(../assets/logo.jpg);
     /* Масштабируем картинку с сохранением пропорций */
-    background-size:cover;
+    background-size: cover;
     /* Запрещаем фоновому изображению прокручиваться, т.е. делаем его неподвижным */
-    background-attachment:fixed;
+    background-attachment: fixed;
     /* Крепим изображение к верхней части экрана */
     /*position:fixed;*/
     /* Цвет текста */
-    color:#fff;
+    color: #fff;
     /* Выравниваем текста внутри splash по центру */
-    text-align:center;
+    text-align: center;
     /*Ширина картинки - на весь экран*/
     width: 100%;
 }
+
 /*footer*/
 .footer {
     position: absolute;
@@ -163,4 +178,76 @@ h2{
     font-size: 13px;
     margin-bottom: 10px;
     color: #fff;
+}
+
+/*----------------------------------------------------*/
+
+.socialIcons {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    height: 90px;
+    text-align: center;
+}
+
+.socialIcons li {
+    display: inline-block;
+    margin: auto 18px;
+}
+
+.socialIcons li a {
+    text-align: center;
+    display: inline-block;
+    font-size: 4rem;
+    height: 100px;
+    width: 100px;
+    line-height: 100px;
+    transition: all .5s ease;
+    transform-origin: left;
+    transform: rotateY(-30deg);
+    text-shadow: 10px 0px 1px #131313, 10px 0px 1px #070707, 10px 0px 1px black, 10px 0px 1px black;
+}
+
+.youtube{
+    color: #c0392b;
+}
+
+.socialIcons li a:hover {
+    color: #202020;
+    transform: rotate(0deg);
+    text-shadow: 0px 0px 1px #131313, 0px 0px 1px #070707, 0px 0px 1px black, 0px 0px 1px black;
+}
+
+/*Operators icons*/
+.phones{
+    list-style: none;
+    padding: 25px;
+}
+
+.phones li {
+    margin: 18px auto;
+}
+
+[class*=mobo-] {
+    text-indent: 5px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    display: inline-block;
+//display:inline;
+//zoom:1;
+    vertical-align:middle;
+    margin-right:3px;
+}
+
+/*Київстар*/
+.mobo-kyivstar-36{
+    line-height:36px;
+    padding-left:36px;
+    background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAE3klEQVRYR+2XfWjUZRzAP7+X+/3utju307lNLTCVlQRC0ywR0zVKVIxCMSEKvbnZxLLZmyaIf2QioVKgMXU7C6GIpsHKP6xMLBS0ErFAcQglk7bd5l7udrf7vcVzdxvTvJc5Qf/wgTG45/vy+X6f5/l+vz+J+2xJo+dZoFJ//DAxpRy3+S1r9fdGY3P0QA0Dh2nVXsEP3LBhgvkR1fqWO4UaPVDQbiEsTWWMAALGOCcIyJX3DqjR/oN+6Qm8QA/gc44QkJfdO6Cg/RsRaeYQkNdpokpe/gBoKAMPMpTtMtyHGfqdiFR+/7yyRvsK/dI0fHezDi1tzmPRwgZQizDNZto6jrJ90rVsp5XYb4h/SatrJWOBLgceMnYS0DflpLst9Bjj/SuxpXmo1gVqXRuTlbrROMd1dVYi7ZYDBQ44zglM6xQdxhG2ei+mdTDnmofXSg5hyKKXfU+N+62MMLuj83CrS3BJFVjybPolkIEwUGJ8IVH311imTO/ELYGWMhUHooDhQB6g2OcwnSZ6+pvYXNCSU/TDhbZHyvGry3Cpy4lLZcQk0AEPoKYEY4Bs9w1m6Ayt6tMUk4Qa7HDivwn0AwJSsyHfDBLQAzlDNRrH6JUXYcngTkEogJOyYAMDQMiGiWYw6Xpmcx5VCxtQlcUMSGMwpaSy+BPpFMpCUkTRLbIWqeQN34msUAdiNXRo9RRL4BpmR0CIIAecZKZUpx2sr1irbbi528857WFF+Vw88ksoyotEpYmJDHlSgJaIxAFvdAnr849lBToYq6NN280kCYSuCEhACDjduYJtHqHPOsq7eWcHc5Z5/PgkthhNXoGizCcuTU6kdpz1HatcS7PCCIFpn+psev0UN9TZibIgO5ewrONErCbe8Zy6nY3c56E9xlxkU2KD59ecYG661EYlPqeLN7Xz2XRzB8pm6S7tPwDKlsiRZ2jBNpXFm2rxOr2s83ye1sGu2NrE3tvu+mwQw/dHBrTuZy8z5l6kU52cKE6lxl6q3OtvcSgTNM5wXZmNI2Tsk6xxVeQKNTKgoPEjbUolE6Vka4nb0BsqZUtJ25DDfdH59OsnGScli2mbA8Xxj1ntzul7LXegxkgN3Z56/MOaYb5tc/q8j/2zRN1Nrl2xMnTXZXQ52YYMoNcGX28F1f6T2TKVG9C+1kcxSi/hTvUjUfoTFTvyMrW+r//nJBjbS4e+jpJUyxGfR7odpkYR5THjyg3ogHWViPxIYuYRq90RFbuZ1a4X0lo/EL9A2DWDcSmJDsBv/EBAez4TUXagYGw/Ib06MQkI6W7R2+xOqpWijKHuankYdfI/6EpyzBANWtyn8dFqAvkH0+lmBtrXs4io7xiFUnJuESNI2AZ3+ClqC0RDzLwORavo1A7il0GMHOIhOLZDd2cZm4tvO1elB3r133wqitqIKPmJ73YRoTiqYmMHq/QPsrEM7QcHvqFDW0Zp6peQODrrKqvVqbezkR7os+izRLSfGC8nj0rcgQLjF9Zoz+QMMyhYb3YxoPgpTL26iA1W31TqCq/eais90PtdBZQVhGiX1cSQ5rPg2pUidkzvHDHQ/p4nCXvPJqbGuAMT7L8JfDgFton3etPKfIf2hKbjKtyJ45h4+rayZuyfI4YZVAjGnqNH3YiLdlou17Hn8a6RHdkdex6d4n96Jb0oUk76eQAAAABJRU5ErkJggg==);
 }
