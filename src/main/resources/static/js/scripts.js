@@ -17,17 +17,25 @@ function submitForm() {
             formSuccess();
         },
         error: function (data) {
-            console.log("ERROR");
-            clearInputs();
+            formError();
         }
     });
-    console.log("OutOfMethod");
     clearInputs();
 }
 
 function formSuccess() {
     $("#msgSubmit").removeClass("hidden");
+    $("#nameError").addClass("hidden");
+    $("#emailError").addClass("hidden");
+    $("#messagelError").addClass("hidden");
 }
+
+function formError() {
+    $("#nameError").removeClass("hidden");
+    $("#emailError").removeClass("hidden");
+    $("#messagelError").removeClass("hidden");
+}
+
 
 function clearInputs() {
     $("#name").val('');

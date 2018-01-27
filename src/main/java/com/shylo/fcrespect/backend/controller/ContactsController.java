@@ -32,14 +32,14 @@ public class ContactsController {
     }
 
     @RequestMapping(value = "/form-process", method = RequestMethod.POST)
-    public String processForm(@Valid @ModelAttribute(value = "mailRequest") MailRequest mailRequest, BindingResult bindingResult, ModelMap modelMap, HttpServletRequest request) {
+    public String processForm(@Valid @ModelAttribute(value = "mailRequest") MailRequest mailRequest, BindingResult bindingResult, ModelMap modelMap, HttpServletRequest request) throws IllegalAccessException {
         String restOfTheUrl = (String) request.getAttribute(
                 HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
         LOGGER.info("Enter in controller with path - {}", restOfTheUrl);
         if (bindingResult.hasErrors()) {
             LOGGER.error("Errors occurs: {}", bindingResult.getAllErrors());
             modelMap.addAttribute(ProjectConstants.CONTENT_KEY, ViewConstants.CONTACTS_VIEW);
-            return ProjectConstants.HOME_PAGE_KEY;
+            throw new IllegalAccessException();
         }
         LOGGER.info("Recieved feedback messages = {}", mailRequest);
         LOGGER.warn("Should send mail!!!");
