@@ -15,6 +15,7 @@ function submitForm() {
         data: "name=" + name + "&email=" + email + "&message=" + message,
         success: function (data) {
             formSuccess();
+            $('#myModal').modal('show');
             clearInputs();
         },
         error: function (data) {
@@ -24,7 +25,6 @@ function submitForm() {
 }
 
 function formSuccess() {
-    $("#msgSubmit").removeClass("hidden");
     $("#nameError").addClass("hidden");
     $("#emailError").addClass("hidden");
     $("#messagelError").addClass("hidden");
