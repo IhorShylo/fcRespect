@@ -6,13 +6,14 @@ $(function () {
 function submitForm() {
     // Initiate Variables With Form Content
     let name = $("#name").val();
+    let phone = $("#phone").val();
     let email = $("#email").val();
     let message = $("#message").val();
 
     $.ajax({
         type: "POST",
         url: "/contacts/form-process",
-        data: "name=" + name + "&email=" + email + "&message=" + message,
+        data: "name=" + name + "&phone=" + phone + "&email=" + email + "&message=" + message,
         success: function (data) {
             formSuccess();
             $('#myModal').modal('show');
@@ -26,6 +27,7 @@ function submitForm() {
 
 function formSuccess() {
     $("#nameError").addClass("hidden");
+    $("#phoneError").addClass("hidden");
     $("#emailError").addClass("hidden");
     $("#messagelError").addClass("hidden");
 }
@@ -33,6 +35,7 @@ function formSuccess() {
 function formError(data) {
     let resp = data.responseJSON;
     let showNameError = false;
+    let showPhoneError = false;
     let showEmailError = false;
     let showMessageError = false;
 
@@ -40,6 +43,10 @@ function formError(data) {
         if (resp[index].field === 'name') {
             document.getElementById("nameError").innerHTML = resp[index].message;
             showNameError = true;
+        }
+        if (resp[index].field === 'phone') {
+            document.getElementById("phoneError").innerHTML = resp[index].message;
+            showPhoneError = true;
         }
         if (resp[index].field === 'email') {
             document.getElementById("emailError").innerHTML = resp[index].message;
@@ -56,12 +63,17 @@ function formError(data) {
     } else {
         $("#nameError").addClass("hidden");
     }
+    if (showPhoneError) {
+        $("#phoneError").removeClass("hidden");
+    } else {
+        $("#phoneError").addClass("hidden");
+    }
     if (showEmailError) {
         $("#emailError").removeClass("hidden");
     } else {
         $("#emailError").addClass("hidden");
     }
-    if (showMessageError){
+    if (showMessageError) {
         $("#messagelError").removeClass("hidden");
     } else {
         $("#messagelError").addClass("hidden");
@@ -71,6 +83,7 @@ function formError(data) {
 
 function clearInputs() {
     $("#name").val('');
+    $("#phone").val('');
     $("#email").val('');
     $("#message").val('');
 }
