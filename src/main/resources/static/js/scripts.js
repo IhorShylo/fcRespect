@@ -5,9 +5,9 @@ $(function () {
 
 function submitForm() {
     // Initiate Variables With Form Content
-    var name = $("#name").val();
-    var email = $("#email").val();
-    var message = $("#message").val();
+    let name = $("#name").val();
+    let email = $("#email").val();
+    let message = $("#message").val();
 
     $.ajax({
         type: "POST",
@@ -15,12 +15,12 @@ function submitForm() {
         data: "name=" + name + "&email=" + email + "&message=" + message,
         success: function (data) {
             formSuccess();
+            clearInputs();
         },
         error: function (data) {
-            formError();
+            formError(data);
         }
     });
-    clearInputs();
 }
 
 function formSuccess() {
@@ -30,10 +30,42 @@ function formSuccess() {
     $("#messagelError").addClass("hidden");
 }
 
-function formError() {
-    $("#nameError").removeClass("hidden");
-    $("#emailError").removeClass("hidden");
-    $("#messagelError").removeClass("hidden");
+function formError(data) {
+    let resp = data.responseJSON;
+    let showNameError = false;
+    let showEmailError = false;
+    let showMessageError = false;
+
+    for (index = 0; index < resp.length; index++) {
+        if (resp[index].field === 'name') {
+            document.getElementById("nameError").innerHTML = resp[index].message;
+            showNameError = true;
+        }
+        if (resp[index].field === 'email') {
+            document.getElementById("emailError").innerHTML = resp[index].message;
+            showEmailError = true;
+        }
+        if (resp[index].field === 'message') {
+            document.getElementById("messagelError").innerHTML = resp[index].message;
+            showMessageError = true;
+        }
+    }
+
+    if (showNameError) {
+        $("#nameError").removeClass("hidden");
+    } else {
+        $("#nameError").addClass("hidden");
+    }
+    if (showEmailError) {
+        $("#emailError").removeClass("hidden");
+    } else {
+        $("#emailError").addClass("hidden");
+    }
+    if (showMessageError){
+        $("#messagelError").removeClass("hidden");
+    } else {
+        $("#messagelError").addClass("hidden");
+    }
 }
 
 

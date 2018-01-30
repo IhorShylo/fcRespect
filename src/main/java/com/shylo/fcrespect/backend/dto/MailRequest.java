@@ -9,8 +9,11 @@ import javax.validation.constraints.Size;
 public class MailRequest {
     @Size(min = 2, max = 25)
     private String name;
+
+    @Size(min = 5, max = 25)
     @Email
     private String email;
+
     @Size(min = 2, max = 200)
     private String message;
 }

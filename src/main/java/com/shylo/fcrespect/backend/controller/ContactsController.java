@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,14 +33,13 @@ public class ContactsController {
     }
 
     @RequestMapping(value = "/form-process", method = RequestMethod.POST)
-    public String processForm(@Valid @ModelAttribute(value = "mailRequest") MailRequest mailRequest, BindingResult bindingResult, ModelMap modelMap, HttpServletRequest request) throws IllegalAccessException {
+    public String processForm(@Valid @ModelAttribute(value = "mailRequest") MailRequest mailRequest, BindingResult bindingResult, ModelMap modelMap, HttpServletRequest request) throws BindException {
         String restOfTheUrl = (String) request.getAttribute(
                 HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
         LOGGER.info("Enter in controller with path - {}", restOfTheUrl);
         if (bindingResult.hasErrors()) {
-            LOGGER.error("Errors occurs: {}", bindingResult.getAllErrors());
             modelMap.addAttribute(ProjectConstants.CONTENT_KEY, ViewConstants.CONTACTS_VIEW);
-            throw new IllegalAccessException();
+            throw new BindException(bindingResult);
         }
         LOGGER.info("Recieved feedback messages = {}", mailRequest);
         LOGGER.warn("Should send mail!!!");
