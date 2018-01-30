@@ -3,7 +3,7 @@ package com.shylo.fcrespect.backend.controller;
 import com.shylo.fcrespect.backend.constants.ProjectConstants;
 import com.shylo.fcrespect.backend.constants.ViewConstants;
 import com.shylo.fcrespect.backend.dto.MailRequest;
-import com.shylo.fcrespect.backend.service.EmailServiceImpl;
+import com.shylo.fcrespect.backend.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class ContactsController {
     private static final String DEFAULT_SUBJECT = "Заявка в клуб";
 
     @Autowired
-    EmailServiceImpl emailService;
+    EmailService emailService;
 
     @RequestMapping
     public String contactsPage(MailRequest mailRequest, ModelMap modelMap, HttpServletRequest request) {
@@ -49,12 +49,9 @@ public class ContactsController {
             modelMap.addAttribute(ProjectConstants.CONTENT_KEY, ViewConstants.CONTACTS_VIEW);
             throw new BindException(bindingResult);
         }
-        LOGGER.info("Recieved feedback messages = {}", mailRequest);
-        LOGGER.info("Sending email...");
+
         String text = "Name: " + mailRequest.getName() + "\n" + "Mail: " + mailRequest.getEmail() + "\n\n" + mailRequest.getMessage();
         emailService.sendSimpleMessage(HOME_MAIL, DEFAULT_SUBJECT, text);
-        LOGGER.info("Email was send");
-
         modelMap.addAttribute(ProjectConstants.CONTENT_KEY, ViewConstants.CONTACTS_VIEW);
         return ProjectConstants.HOME_PAGE_KEY;
     }
