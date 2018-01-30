@@ -3,8 +3,10 @@ package com.shylo.fcrespect.backend.controller;
 import com.shylo.fcrespect.backend.constants.ProjectConstants;
 import com.shylo.fcrespect.backend.constants.ViewConstants;
 import com.shylo.fcrespect.backend.dto.MailRequest;
+import com.shylo.fcrespect.backend.service.EmailServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindException;
@@ -22,6 +24,12 @@ import javax.validation.Valid;
 public class ContactsController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ContactsController.class);
+
+    private static final String HOME_MAIL = "igor_shilo@ukr.net";
+    private static final String DEFAULT_SUBJECT = "Заявка в клуб";
+
+    @Autowired
+    EmailServiceImpl emailService;
 
     @RequestMapping
     public String contactsPage(MailRequest mailRequest, ModelMap modelMap, HttpServletRequest request) {
@@ -42,7 +50,11 @@ public class ContactsController {
             throw new BindException(bindingResult);
         }
         LOGGER.info("Recieved feedback messages = {}", mailRequest);
-        LOGGER.warn("Should send mail!!!");
+        LOGGER.info("Sending email...");
+        String text = "Name: " + mailRequest.getName() + "\n" + "Mail: " + mailRequest.getEmail() + "\n\n" + mailRequest.getMessage();
+        emailService.sendSimpleMessage(HOME_MAIL, DEFAULT_SUBJECT, text);
+        LOGGER.info("Email was send");
+
         modelMap.addAttribute(ProjectConstants.CONTENT_KEY, ViewConstants.CONTACTS_VIEW);
         return ProjectConstants.HOME_PAGE_KEY;
     }
