@@ -18,6 +18,6 @@ public class MailRequest {
     @Email
     private String email;
 
-    @Size(min = 2, max = 200)
+    @Size(min = 2, max = 500)
     private String message;
 }

@@ -14,7 +14,7 @@
         </div>
 
         <article class="row intro-article">
-            <div class="content-intro-container col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 text-justify">
+            <div th:utext="#{contacts.article}" class="content-intro-container col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 text-justify">
                 <p>Футбольный клуб "Респект" приглашает всех желающих на просмотр в свой состав.</p>
                 <p>Открыт набор на все позиции.</p>
                 <p>Наша команда играет в высшем дивизионе любительской <b>Weekend Super League (WSL)</b> и ставит перед собой только самые высокие задачи.</p>
@@ -23,47 +23,48 @@
                 <p>Для того, чтобы записаться на просмотр, звоните по телефонам указаным ниже, либо заполните форму для обратной связи и мы с вами свяжемся.</p>
             </div>
         </article>
+        <hr/>
         <article class="row contacts-article">
             <div class="content-request-container col-lg-8 col-md-8 col-sm-8">
-                <h2>Send a message</h2>
+                <h2 th:text="#{contacts.title.feedback}">Feedback</h2>
                 <form action="#" th:action="@{/contacts/form-process}" th:object="${mailRequest}" method="post"
                       role="form" id="contactForm">
 
                     <div class="row">
                         <div class="form-group col-lg-4 col-md-6 col-sm-6">
-                            <label for="name" class="h4">Name</label>
+                            <label th:text="#{contacts.name}" for="name" class="h4">Name</label>
                             <input type="text" th:field="*{name}" class="form-control" id="name"
-                                   placeholder="Enter name" required="required"/>
+                                   th:placeholder="#{contacts.placeholder.name}" placeholder="Enter name" required="required"/>
                             <div id="nameError" class="h3 alert alert-danger hidden">Name is wrong</div>
                         </div>
 
                         <div class="form-group col-lg-4 col-md-6 col-sm-6">
-                            <label for="phone" class="h4">Phone</label>
+                            <label th:text="#{contacts.phone}" for="phone" class="h4">Phone</label>
                             <div class="form-inline">
                                 <label>+380</label>
                                 <input type="text" th:field="*{phone}" class="form-control" id="phone"
-                                       placeholder="Enter phone" required="required"/>
+                                       th:placeholder="#{contacts.placeholder.phone}" placeholder="Enter phone" required="required"/>
                                 <div id="phoneError" class="h3 alert alert-danger hidden">Phone is wrong</div>
                             </div>
                         </div>
                         <div class="form-group col-lg-4 col-md-6 col-sm-6">
-                            <label for="email" class="h4">Email</label>
+                            <label th:text="#{contacts.email}" for="email" class="h4">Email</label>
                             <input type="email" th:field="*{email}" class="form-control" id="email"
-                                   placeholder="Enter email" required="required"/>
+                                   th:placeholder="#{contacts.placeholder.email}" placeholder="Enter email" required="required"/>
                             <div id="emailError" class="h3 alert alert-danger hidden">Email is wrong</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="message" class="h4 ">Message</label>
-                        <textarea id="message" th:field="*{message}" class="form-control" rows="5"
-                                  placeholder="Enter your message" required="required"></textarea>
+                        <label th:text="#{contacts.message}" for="message" class="h4 ">Message</label>
+                        <textarea id="message"  th:field="*{message}" class="form-control" rows="5"
+                                  th:placeholder="#{contacts.placeholder.message}" placeholder="Enter your message" required="required"></textarea>
                         <div id="messagelError" class="h3 alert alert-danger hidden">Message is wrong</div>
                     </div>
-                    <button type="button" id="form-submit" class="btn btn-danger btn-lg pull-left">Submit</button>
+                    <button th:text="#{contacts.title.button}" type="button" id="form-submit" class="btn btn-danger btn-lg pull-left">Submit</button>
                 </form>
             </div>
             <div class="contacts-container col-lg-4 col-md-4 col-sm-4">
-                <h2>Contact us</h2>
+                <h2 th:text="#{contacts.tittle.contacts}">Contacts</h2>
                 <div class="col-lg-12 col-md-12 text-center">
                     <ul class="socialIcons">
                         <li><a target="_blank" class="facebook"
@@ -79,9 +80,8 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 text-center">
                         <ul class="phones">
-                            <li><span title="Київстар" class="mobo-kyivstar-36">&nbsp;067 34 36 450  (Павел)</span></li>
-                            <li><span title="Київстар" class="mobo-kyivstar-36">&nbsp;067 224 57 58  (Богдан)</span>
-                            </li>
+                            <li><span th:text="#{contacts.tel.pavel}" title="Київстар" class="mobo-kyivstar-36">&nbsp;067 34 36 450  (Павел)</span></li>
+                            <li><span th:text="#{contacts.tel.bogdan}" title="Київстар" class="mobo-kyivstar-36">&nbsp;067 224 57 58  (Богдан)</span></li>
                         </ul>
                     </div>
                 </div>
@@ -92,12 +92,12 @@
              id="myModal">
             <div class="modal-dialog modal-sm" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header text-center">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Message was send</h4>
+                        <h4 th:text="#{contacts.title.modal}" class="modal-title">Message was send</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Your message was send to FC Respect administration. We will contact you soon.</p>
+                        <p th:text="#{contacts.modal.message}">Your message was send to FC Respect administration. We will contact you soon.</p>
                     </div>
                 </div>
             </div>
