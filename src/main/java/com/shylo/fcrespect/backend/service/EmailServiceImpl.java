@@ -1,6 +1,7 @@
 package com.shylo.fcrespect.backend.service;
 
 import com.shylo.fcrespect.backend.controller.ContactsController;
+import com.shylo.fcrespect.backend.dto.FeedbackRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,9 @@ public class EmailServiceImpl implements EmailService {
         message.setText(text);
         mailSender.send(message);
         LOGGER.info("Email was send");
+    }
+
+    public String formMailBody(FeedbackRequest feedback) {
+        return "Name: " + feedback.getName() + "\n" + "Phone: " + feedback.getPhone() + "\n" + "Mail: " + feedback.getEmail() + "\n\n" + feedback.getMessage();
     }
 }

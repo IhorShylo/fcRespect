@@ -50,14 +50,10 @@ public class ContactsController {
             throw new BindException(bindingResult);
         }
 
-        String text = formMailBody(feedback);
+        String text = emailService.formMailBody(feedback);
         emailService.sendSimpleMessage(HOME_MAIL, DEFAULT_SUBJECT, text);
         modelMap.addAttribute(ProjectConstants.CONTENT_KEY, ViewConstants.CONTACTS_VIEW);
         return ProjectConstants.HOME_PAGE_KEY;
-    }
-
-    private String formMailBody(FeedbackRequest feedback) {
-        return "Name: " + feedback.getName() + "\n" + "Phone: " + feedback.getPhone() + "\n" + "Mail: " + feedback.getEmail() + "\n\n" + feedback.getMessage();
     }
 
 }
