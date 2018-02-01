@@ -9,6 +9,7 @@ public final class ViewConstants {
     public static final String HONOURS_VIEW = "honoursView";
     public static final String CONTACTS_VIEW = "contactsView";
     public static final String PLAYER_DETAILS_VIEW = "playerDetailsView";
+    public static final String ERROR_404_VIEW = "error404View";
 
     private ViewConstants() {
     }
