@@ -8,16 +8,16 @@ import javax.validation.constraints.Size;
 
 @Data
 public class FeedbackRequest {
-    @Size(min = 2, max = 25)
+    @Size(min = 2, max = 25, message = "{Size.feedback.name}")
     private String name;
 
-    @Pattern(regexp = "[\\d]{9}")
+    @Pattern(regexp = "[\\d]{9}", message = "{Pattern.feedback.phone}")
     private String phone;
 
-    @Size(min = 5, max = 25)
-    @Email
+    @Size(min = 5, max = 25, message = "{Size.feedback.email}")
+    @Email(message = "{Email.feedback.email}")
     private String email;
 
-    @Size(min = 2, max = 500)
+    @Size(min = 2, max = 500, message = "{Size.feedback.message}")
     private String message;
 }
