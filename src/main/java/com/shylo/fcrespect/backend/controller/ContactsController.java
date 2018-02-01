@@ -2,7 +2,7 @@ package com.shylo.fcrespect.backend.controller;
 
 import com.shylo.fcrespect.backend.constants.ProjectConstants;
 import com.shylo.fcrespect.backend.constants.ViewConstants;
-import com.shylo.fcrespect.backend.dto.MailRequest;
+import com.shylo.fcrespect.backend.dto.FeedbackRequest;
 import com.shylo.fcrespect.backend.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +32,7 @@ public class ContactsController {
     EmailService emailService;
 
     @RequestMapping
-    public String contactsPage(MailRequest mailRequest, ModelMap modelMap, HttpServletRequest request) {
+    public String contactsPage(@ModelAttribute(value = "feedback") FeedbackRequest feedback, ModelMap modelMap, HttpServletRequest request) {
         String restOfTheUrl = (String) request.getAttribute(
                 HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
         LOGGER.info("Enter in controller with path - {}", restOfTheUrl);
@@ -41,7 +41,7 @@ public class ContactsController {
     }
 
     @RequestMapping(value = "/form-process", method = RequestMethod.POST)
-    public String processForm(@Valid @ModelAttribute(value = "mailRequest") MailRequest mailRequest, BindingResult bindingResult, ModelMap modelMap, HttpServletRequest request) throws BindException {
+    public String processForm(@Valid @ModelAttribute(value = "feedback") FeedbackRequest feedback, BindingResult bindingResult, ModelMap modelMap, HttpServletRequest request) throws BindException {
         String restOfTheUrl = (String) request.getAttribute(
                 HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
         LOGGER.info("Enter in controller with path - {}", restOfTheUrl);
@@ -50,14 +50,14 @@ public class ContactsController {
             throw new BindException(bindingResult);
         }
 
-        String text = formMailBody(mailRequest);
+        String text = formMailBody(feedback);
         emailService.sendSimpleMessage(HOME_MAIL, DEFAULT_SUBJECT, text);
         modelMap.addAttribute(ProjectConstants.CONTENT_KEY, ViewConstants.CONTACTS_VIEW);
         return ProjectConstants.HOME_PAGE_KEY;
     }
 
-    private String formMailBody(@Valid @ModelAttribute(value = "mailRequest") MailRequest mailRequest) {
-        return "Name: " + mailRequest.getName() + "\n" + "Phone: " + mailRequest.getPhone() + "\n" + "Mail: " + mailRequest.getEmail() + "\n\n" + mailRequest.getMessage();
+    private String formMailBody(FeedbackRequest feedback) {
+        return "Name: " + feedback.getName() + "\n" + "Phone: " + feedback.getPhone() + "\n" + "Mail: " + feedback.getEmail() + "\n\n" + feedback.getMessage();
     }
 
 }

@@ -7,7 +7,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Data
-public class MailRequest {
+public class FeedbackRequest {
     @Size(min = 2, max = 25)
     private String name;
 
