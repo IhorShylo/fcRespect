@@ -5,15 +5,18 @@ $(function () {
 
 function submitForm() {
     // Initiate Variables With Form Content
-    let name = $("#name").val();
-    let phone = $("#phone").val();
-    let email = $("#email").val();
-    let message = $("#message").val();
+    let request = {
+        name: $("#name").val(),
+        phone: $("#phone").val(),
+        email: $("#email").val(),
+        message: $("#message").val()
+    };
 
     $.ajax({
         type: "POST",
         url: "/contacts/form-process",
-        data: "name=" + name + "&phone=" + phone + "&email=" + email + "&message=" + message,
+        contentType:"application/json",
+        data: JSON.stringify(request),
         success: function (data) {
             formSuccess();
             $('#myModal').modal('show');

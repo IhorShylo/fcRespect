@@ -9,9 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindException;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.HandlerMapping;
@@ -32,7 +30,7 @@ public class ContactsController {
     EmailService emailService;
 
     @RequestMapping
-    public String contactsPage(@ModelAttribute(value = "feedback") FeedbackRequest feedback, ModelMap modelMap, HttpServletRequest request) {
+    public String contactsPage(ModelMap modelMap, HttpServletRequest request) {
         String restOfTheUrl = (String) request.getAttribute(
                 HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
         LOGGER.info("Enter in controller with path - {}", restOfTheUrl);
@@ -41,15 +39,10 @@ public class ContactsController {
     }
 
     @RequestMapping(value = "/form-process", method = RequestMethod.POST)
-    public String processForm(@Valid @ModelAttribute(value = "feedback") FeedbackRequest feedback, BindingResult bindingResult, ModelMap modelMap, HttpServletRequest request) throws BindException {
+    public String processForm(@Valid @RequestBody FeedbackRequest feedback, ModelMap modelMap, HttpServletRequest request) {
         String restOfTheUrl = (String) request.getAttribute(
                 HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
         LOGGER.info("Enter in controller with path - {}", restOfTheUrl);
-        if (bindingResult.hasErrors()) {
-            modelMap.addAttribute(ProjectConstants.CONTENT_KEY, ViewConstants.CONTACTS_VIEW);
-            throw new BindException(bindingResult);
-        }
-
         String text = emailService.formMailBody(feedback);
         emailService.sendSimpleMessage(HOME_MAIL, DEFAULT_SUBJECT, text);
         modelMap.addAttribute(ProjectConstants.CONTENT_KEY, ViewConstants.CONTACTS_VIEW);

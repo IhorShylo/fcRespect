@@ -27,13 +27,13 @@
         <article class="row contacts-article">
             <div class="content-request-container col-lg-8 col-md-8 col-sm-8">
                 <h2 th:text="#{contacts.title.feedback}">Feedback</h2>
-                <form action="#" th:action="@{/contacts/form-process}" th:object="${feedback}" method="post"
+                <form action="#" th:action="@{/contacts/form-process}" method="post"
                       role="form" id="contactForm">
 
                     <div class="row">
                         <div class="form-group col-lg-4 col-md-6 col-sm-6">
                             <label th:text="#{contacts.name}" for="name" class="h4">Name</label>
-                            <input type="text" th:field="*{name}" class="form-control" id="name"
+                            <input type="text" class="form-control" id="name"
                                    th:placeholder="#{contacts.placeholder.name}" placeholder="Enter name" required="required"/>
                             <div id="nameError" class="h3 alert alert-danger hidden">Name is wrong</div>
                         </div>
@@ -42,21 +42,21 @@
                             <label th:text="#{contacts.phone}" for="phone" class="h4">Phone</label>
                             <div class="form-inline">
                                 <label>+380</label>
-                                <input type="text" th:field="*{phone}" class="form-control" id="phone"
+                                <input type="text" class="form-control" id="phone"
                                        th:placeholder="#{contacts.placeholder.phone}" placeholder="Enter phone" required="required"/>
                                 <div id="phoneError" class="h3 alert alert-danger hidden">Phone is wrong</div>
                             </div>
                         </div>
                         <div class="form-group col-lg-4 col-md-6 col-sm-6">
                             <label th:text="#{contacts.email}" for="email" class="h4">Email</label>
-                            <input type="email" th:field="*{email}" class="form-control" id="email"
+                            <input type="email" class="form-control" id="email"
                                    th:placeholder="#{contacts.placeholder.email}" placeholder="Enter email" required="required"/>
                             <div id="emailError" class="h3 alert alert-danger hidden">Email is wrong</div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label th:text="#{contacts.message}" for="message" class="h4 ">Message</label>
-                        <textarea id="message"  th:field="*{message}" class="form-control" rows="5"
+                        <textarea id="message" class="form-control" rows="5"
                                   th:placeholder="#{contacts.placeholder.message}" placeholder="Enter your message" required="required"></textarea>
                         <div id="messagelError" class="h3 alert alert-danger hidden">Message is wrong</div>
                     </div>
