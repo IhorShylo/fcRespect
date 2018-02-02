@@ -1,5 +1,4 @@
 $(function () {
-    // cancels the form submission
     $("#form-submit").click(submitForm);
 });
 
@@ -15,7 +14,7 @@ function submitForm() {
     $.ajax({
         type: "POST",
         url: "/contacts/form-process",
-        contentType:"application/json",
+        contentType: "application/json; charset=utf-8",
         data: JSON.stringify(request),
         success: function (data) {
             formSuccess();
