@@ -10,6 +10,7 @@ public final class ViewConstants {
     public static final String CONTACTS_VIEW = "contactsView";
     public static final String PLAYER_DETAILS_VIEW = "playerDetailsView";
     public static final String ERROR_404_VIEW = "error404View";
+    public static final String ERROR_500_VIEW = "error500View";
 
     private ViewConstants() {
     }

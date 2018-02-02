@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.HandlerMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -26,9 +25,7 @@ public class TeamController {
 
     @RequestMapping
     public String teamPage(ModelMap modelMap, HttpServletRequest request) {
-        String restOfTheUrl = (String) request.getAttribute(
-                HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
-        LOGGER.info("Enter in controller with path - {}", restOfTheUrl);
+        LOGGER.info("Enter in url- {}", request.getRequestURL());
 
         List<Player> allPlayers = playerDao.findAll();
         modelMap.put("allPlayers", allPlayers);
@@ -38,14 +35,11 @@ public class TeamController {
 
     @RequestMapping(value = "/{id}")
     public String playerDetailPage(ModelMap modelMap, @PathVariable int id, HttpServletRequest request) {
-        String restOfTheUrl = (String) request.getAttribute(
-                HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
-        LOGGER.info("Enter in controller with path - {}", restOfTheUrl);
+        LOGGER.info("Enter in url- {}", request.getRequestURL());
 
         Player player = playerDao.findOne(id);
         modelMap.put("player", player);
         modelMap.addAttribute(ProjectConstants.CONTENT_KEY, ViewConstants.PLAYER_DETAILS_VIEW);
         return ProjectConstants.HOME_PAGE_KEY;
     }
-
 }
