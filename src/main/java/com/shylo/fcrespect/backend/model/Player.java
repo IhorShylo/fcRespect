@@ -1,6 +1,8 @@
 package com.shylo.fcrespect.backend.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -10,6 +12,8 @@ import java.time.LocalDate;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "players")
 public class Player implements Serializable {
 
@@ -44,7 +48,7 @@ public class Player implements Serializable {
     @Column(name = "birth_place")
     private String birthPlace;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "statistic_id", nullable = false, unique = true)
     private Statistic statistic = new Statistic();
 }

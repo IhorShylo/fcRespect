@@ -2,7 +2,7 @@ package com.shylo.fcrespect.backend.controller;
 
 import com.shylo.fcrespect.backend.constants.ProjectConstants;
 import com.shylo.fcrespect.backend.constants.ViewConstants;
-import com.shylo.fcrespect.backend.dao.impl.PlayerDao;
+import com.shylo.fcrespect.backend.dao.impl.PlayerDaoImpl;
 import com.shylo.fcrespect.backend.model.Player;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,12 +21,11 @@ public class TeamController {
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
     @Autowired
-    PlayerDao playerDao;
+    PlayerDaoImpl playerDao;
 
     @RequestMapping
     public String teamPage(ModelMap modelMap, HttpServletRequest request) {
         LOGGER.info("Enter in url- {}", request.getRequestURL());
-
         List<Player> allPlayers = playerDao.findAll();
         modelMap.put("allPlayers", allPlayers);
         modelMap.addAttribute(ProjectConstants.CONTENT_KEY, ViewConstants.TEAM_VIEW);
@@ -37,7 +36,7 @@ public class TeamController {
     public String playerDetailPage(ModelMap modelMap, @PathVariable int id, HttpServletRequest request) {
         LOGGER.info("Enter in url- {}", request.getRequestURL());
 
-        Player player = playerDao.findOne(id);
+        Player player = playerDao.findOne(id).orElseThrow(IllegalArgumentException::new);
         modelMap.put("player", player);
         modelMap.addAttribute(ProjectConstants.CONTENT_KEY, ViewConstants.PLAYER_DETAILS_VIEW);
         return ProjectConstants.HOME_PAGE_KEY;
