@@ -24,7 +24,7 @@ public class StatisticDaoTest {
 
         Statistic statistic = new Statistic();
         statisticDao.create(statistic);
-        Statistic statisticFromDB = statisticDao.findOne(statistic.getId()).orElseGet(null);
+        Statistic statisticFromDB = statisticDao.findOne(statistic.getId()).orElseGet(() -> null);
 
         assertEquals(statistic, statisticFromDB);
     }
