@@ -1,7 +1,8 @@
-package com.shylo.fcrespect.backend.service;
+package com.shylo.fcrespect.backend.service.impl;
 
 import com.shylo.fcrespect.backend.controller.ContactsController;
-import com.shylo.fcrespect.backend.dto.FeedbackRequest;
+import com.shylo.fcrespect.backend.dto.req.FeedbackRequest;
+import com.shylo.fcrespect.backend.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

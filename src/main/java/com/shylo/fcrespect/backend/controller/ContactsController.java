@@ -2,7 +2,7 @@ package com.shylo.fcrespect.backend.controller;
 
 import com.shylo.fcrespect.backend.constants.ProjectConstants;
 import com.shylo.fcrespect.backend.constants.ViewConstants;
-import com.shylo.fcrespect.backend.dto.FeedbackRequest;
+import com.shylo.fcrespect.backend.dto.req.FeedbackRequest;
 import com.shylo.fcrespect.backend.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

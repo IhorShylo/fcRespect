@@ -1,6 +1,6 @@
 package com.shylo.fcrespect.backend.service;
 
-import com.shylo.fcrespect.backend.dto.FeedbackRequest;
+import com.shylo.fcrespect.backend.dto.req.FeedbackRequest;
 
 public interface EmailService {
 

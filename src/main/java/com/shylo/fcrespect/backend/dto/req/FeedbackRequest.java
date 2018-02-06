@@ -1,12 +1,12 @@
-package com.shylo.fcrespect.backend.dto;
+package com.shylo.fcrespect.backend.dto.req;
 
-import lombok.Data;
+import lombok.Value;
 import org.hibernate.validator.constraints.Email;
 
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-@Data
+@Value
 public class FeedbackRequest {
     @Size(min = 2, max = 25, message = "{Size.feedback.name}")
     private String name;

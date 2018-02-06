@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +31,7 @@ public class ExceptionHandleAdvisor {
     @ExceptionHandler(BindException.class)
     @ResponseBody
     public List<ErrorResponse> handleGetValidationException(HttpServletRequest request, BindException ex) {
-        LOGGER.error("url - {}, exception - {}", request.getRequestURL(), ex.getMessage());
+        LOGGER.warn("url - {}, exception during GET request field validation - {}", request.getRequestURL(), ex.getMessage());
         List<ErrorResponse> result = new ArrayList<>();
         ex.getFieldErrors().forEach(e -> result.add(new ErrorResponse(e.getField(), e.getDefaultMessage())));
         return result;
@@ -39,17 +41,40 @@ public class ExceptionHandleAdvisor {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
-    public List<ErrorResponse> defaultErrorHandle(HttpServletRequest request, MethodArgumentNotValidException ex) {
-        LOGGER.error("url - {}, exception - {}", request.getRequestURL(), ex.getMessage());
+    public List<ErrorResponse> handlePostValidationException(HttpServletRequest request, MethodArgumentNotValidException ex) {
+        LOGGER.warn("url - {}, exception during POST request field validation - {}", request.getRequestURL(), ex.getMessage());
         List<ErrorResponse> result = new ArrayList<>();
         ex.getBindingResult().getFieldErrors().forEach(e -> result.add(new ErrorResponse(e.getField(), e.getDefaultMessage())));
         return result;
     }
 
+    /*Appear when you receive invalid parameter type*/
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ModelAndView handleMethodArgumentTypeMismatchException(HttpServletRequest request, MethodArgumentTypeMismatchException ex){
+        LOGGER.warn("url - {}, Invalid request parameter type:", request.getRequestURL(), ex);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject(ProjectConstants.CONTENT_KEY, ViewConstants.ERROR_404_VIEW);
+        modelAndView.setViewName(ProjectConstants.HOME_PAGE_KEY);
+        return modelAndView;
+    }
+
+    /*This exception appear if we can't find some entity in database*/
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ModelAndView handleEntityNotFoundException(HttpServletRequest request, EntityNotFoundException ex) {
+        LOGGER.warn("url - {}, Can't find entity in db:", request.getRequestURL(), ex);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject(ProjectConstants.CONTENT_KEY, ViewConstants.ERROR_404_VIEW);
+        modelAndView.setViewName(ProjectConstants.HOME_PAGE_KEY);
+        return modelAndView;
+    }
+
+    /*All other errors handling*/
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public ModelAndView handleAllOthersError(HttpServletRequest request, Exception ex) {
-        LOGGER.error("url - {}, exception:", request.getRequestURL(), ex);
+        LOGGER.error("url - {}, Unknown error:", request.getRequestURL(), ex);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject(ProjectConstants.CONTENT_KEY, ViewConstants.ERROR_500_VIEW);
         modelAndView.setViewName(ProjectConstants.HOME_PAGE_KEY);
