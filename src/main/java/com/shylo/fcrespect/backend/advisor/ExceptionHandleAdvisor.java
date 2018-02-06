@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.ModelAndView;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
@@ -64,6 +65,17 @@ public class ExceptionHandleAdvisor {
     @ExceptionHandler(EntityNotFoundException.class)
     public ModelAndView handleEntityNotFoundException(HttpServletRequest request, EntityNotFoundException ex) {
         LOGGER.warn("url - {}, Can't find entity in db:", request.getRequestURL(), ex);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject(ProjectConstants.CONTENT_KEY, ViewConstants.ERROR_404_VIEW);
+        modelAndView.setViewName(ProjectConstants.HOME_PAGE_KEY);
+        return modelAndView;
+    }
+
+    /*This exception appear if some method not implemented*/
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(NotImplementedException.class)
+    public ModelAndView handleNotImplementedException(HttpServletRequest request, NotImplementedException ex) {
+        LOGGER.warn("url - {}, Method not implemented:", request.getRequestURL(), ex);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject(ProjectConstants.CONTENT_KEY, ViewConstants.ERROR_404_VIEW);
         modelAndView.setViewName(ProjectConstants.HOME_PAGE_KEY);
