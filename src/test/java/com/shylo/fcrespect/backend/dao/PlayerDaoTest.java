@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.Month;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -35,6 +35,67 @@ public class PlayerDaoTest {
 
     @Test
     public void createPlayerTest() {
+        Player player = getPlayer();
+        playerDao.create(player);
+        Player playerFromDB = playerDao.findOne(player.getId()).orElse(null);
+
+        assertEquals(player, playerFromDB);
+    }
+
+    @Test
+    public void deleteByIdPlayerTest() {
+        Player player = getPlayer();
+        playerDao.create(player);
+        Player playerFromDB = playerDao.findOne(player.getId()).orElse(null);
+        assertEquals(player, playerFromDB);
+
+        playerDao.deleteById(player.getId());
+        Player deletedPlayer = playerDao.findOne(player.getId()).orElseGet(() -> null);
+        assertNull(deletedPlayer);
+    }
+
+    @Test
+    public void getPlayerByEntityTest() {
+        Player player = getPlayer();
+        playerDao.create(player);
+        Player playerFromDB = playerDao.findOne(player.getId()).orElse(null);
+        assertEquals(player, playerFromDB);
+
+        playerDao.delete(player);
+        Player deletedPlayer = playerDao.findOne(player.getId()).orElseGet(() -> null);
+        assertNull(deletedPlayer);
+    }
+
+    @Test
+    public void getAllPlayerTest() {
+        int playersSizeBefore = playerDao.findAll().size();
+        Player player = getPlayer();
+        playerDao.create(player);
+
+        int playersSizeAfter = playerDao.findAll().size();
+
+        assertEquals(playersSizeAfter - playersSizeBefore, 1);
+    }
+
+    @Test
+    public void updatePlayerTest() {
+        int playerId = 1;
+        Player player = getPlayer();
+        player.setId(playerId);
+
+        Player updatable = playerDao.findOne(playerId).orElseGet(() -> null);
+        assertNotNull(updatable);
+        player.getStatistic().setId(updatable.getStatistic().getId());
+        assertNotEquals(player, updatable);
+
+        playerDao.update(player);
+        Player playerAfterUpdate = playerDao.findOne(playerId).orElseGet(() -> null);
+
+        assertEquals(player, playerAfterUpdate);
+
+    }
+
+    private Player getPlayer() {
         final Position positionFromDB = positionDao.findOne(1).orElse(new Position(1, PositionValue.DEFENDER.getValue()));
         Statistic statistic = new Statistic();
 
@@ -46,13 +107,7 @@ public class PlayerDaoTest {
         player.setImageName("someImgName");
         player.setPosition(positionFromDB);
         player.setStatistic(statistic);
-        playerDao.create(player);
-        Player playerFromDB = playerDao.findOne(player.getId()).orElse(null);
-
-        assertEquals(player, playerFromDB);
+        return player;
     }
-
-
-
 
 }

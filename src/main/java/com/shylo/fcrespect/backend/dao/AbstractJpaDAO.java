@@ -39,7 +39,7 @@ public abstract class AbstractJpaDAO<T extends Serializable> {
     }
 
     public void deleteById(Integer id) {
-        Optional<T> entity = findOne(id);
+        T entity = findOne(id).orElseThrow(IllegalArgumentException::new);
         entityManager.remove(entity);
     }
 }
