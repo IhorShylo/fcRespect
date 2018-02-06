@@ -56,3 +56,21 @@ ALTER TABLE players
 
 --------------------------------------------------------------------------------------
 
+CREATE TABLE IF NOT EXISTS news (
+  news_id       SERIAL,
+  title         VARCHAR(300)                NOT NULL,
+  image_name    VARCHAR(60),
+  text          TEXT                        NOT NULL,
+  creation_time TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+
+  PRIMARY KEY (news_id),
+  CONSTRAINT title_check CHECK (title <> ''),
+  CONSTRAINT text_check CHECK (text <> ''),
+  CONSTRAINT creationTime_check CHECK (creation_time >= '2018-01-01 00:00:00')
+);
+
+ALTER TABLE news
+  OWNER TO fcrespect;
+
+--------------------------------------------------------------------------------------
+
