@@ -1,21 +1,12 @@
 package com.shylo.fcrespect.backend.service;
 
-import org.springframework.core.io.Resource;
+import com.shylo.fcrespect.backend.enums.UploadType;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.nio.file.Path;
-import java.util.stream.Stream;
 
 public interface StorageService {
     void init();
 
-    void store(MultipartFile file);
-
-    Stream<Path> loadAll();
-
-    Path load(String fileName);
-
-    Resource loadAsResource(String fileName);
+    void store(MultipartFile file, UploadType type);
 
     void deleteAll();
 }

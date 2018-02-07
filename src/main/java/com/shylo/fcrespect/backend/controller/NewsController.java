@@ -2,6 +2,7 @@ package com.shylo.fcrespect.backend.controller;
 
 import com.shylo.fcrespect.backend.constants.ProjectConstants;
 import com.shylo.fcrespect.backend.constants.ViewConstants;
+import com.shylo.fcrespect.backend.enums.UploadType;
 import com.shylo.fcrespect.backend.service.StorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,7 +44,7 @@ public class NewsController {
         String restOfTheUrl = (String) request.getAttribute(
                 HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
         LOGGER.info("Enter in controller with path - {}", restOfTheUrl);
-        storageService.store(file);
+        storageService.store(file, UploadType.NEWS_IMAGE);
         modelMap.addAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
         modelMap.addAttribute(ProjectConstants.CONTENT_KEY, ViewConstants.NEWS_VIEW);
