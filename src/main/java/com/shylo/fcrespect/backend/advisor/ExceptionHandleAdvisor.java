@@ -3,7 +3,10 @@ package com.shylo.fcrespect.backend.advisor;
 import com.shylo.fcrespect.backend.constants.ProjectConstants;
 import com.shylo.fcrespect.backend.constants.ViewConstants;
 import com.shylo.fcrespect.backend.controller.ContactsController;
-import com.shylo.fcrespect.backend.dto.ErrorResponse;
+import com.shylo.fcrespect.backend.dto.resp.ErrorResponse;
+import com.shylo.fcrespect.backend.dto.resp.ServerErrorResponse;
+import com.shylo.fcrespect.backend.dto.resp.ValidationErrorResponse;
+import com.shylo.fcrespect.backend.exception.StorageException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -31,22 +34,22 @@ public class ExceptionHandleAdvisor {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(BindException.class)
     @ResponseBody
-    public List<ErrorResponse> handleGetValidationException(HttpServletRequest request, BindException ex) {
+    public ServerErrorResponse handleGetValidationException(HttpServletRequest request, BindException ex) {
         LOGGER.warn("url - {}, exception during GET request field validation - {}", request.getRequestURL(), ex.getMessage());
-        List<ErrorResponse> result = new ArrayList<>();
-        ex.getFieldErrors().forEach(e -> result.add(new ErrorResponse(e.getField(), e.getDefaultMessage())));
-        return result;
+        List<ErrorResponse> errors = new ArrayList<>();
+        ex.getBindingResult().getFieldErrors().forEach(e -> errors.add(new ValidationErrorResponse(e.getField(), e.getDefaultMessage())));
+        return new ServerErrorResponse("exception during GET request field validation", errors);
     }
 
     /*This exception appear during post method arguments validation*/
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
-    public List<ErrorResponse> handlePostValidationException(HttpServletRequest request, MethodArgumentNotValidException ex) {
+    public ServerErrorResponse handlePostValidationException(HttpServletRequest request, MethodArgumentNotValidException ex) {
         LOGGER.warn("url - {}, exception during POST request field validation - {}", request.getRequestURL(), ex.getMessage());
-        List<ErrorResponse> result = new ArrayList<>();
-        ex.getBindingResult().getFieldErrors().forEach(e -> result.add(new ErrorResponse(e.getField(), e.getDefaultMessage())));
-        return result;
+        List<ErrorResponse> errors = new ArrayList<>();
+        ex.getBindingResult().getFieldErrors().forEach(e -> errors.add(new ValidationErrorResponse(e.getField(), e.getDefaultMessage())));
+        return new ServerErrorResponse("exception during POST request field validation", errors);
     }
 
     /*Appear when you receive invalid parameter type*/
@@ -77,9 +80,18 @@ public class ExceptionHandleAdvisor {
     public ModelAndView handleNotImplementedException(HttpServletRequest request, NotImplementedException ex) {
         LOGGER.warn("url - {}, Method not implemented:", request.getRequestURL(), ex);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject(ProjectConstants.CONTENT_KEY, ViewConstants.ERROR_404_VIEW);
+        modelAndView.addObject(ProjectConstants.CONTENT_KEY, ViewConstants.ERROR_500_VIEW);
         modelAndView.setViewName(ProjectConstants.HOME_PAGE_KEY);
         return modelAndView;
+    }
+
+    /*This exception appear when we can't save some file*/
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(StorageException.class)
+    @ResponseBody
+    public ServerErrorResponse handleStorageException(HttpServletRequest request, StorageException ex) {
+        LOGGER.error("url - {}, Can't save file:", request.getRequestURL(), ex);
+        return new ServerErrorResponse("Can't save file");
     }
 
     /*All other errors handling*/

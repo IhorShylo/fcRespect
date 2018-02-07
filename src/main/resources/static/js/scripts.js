@@ -35,27 +35,27 @@ function formSuccess() {
 }
 
 function formError(data) {
-    let resp = data.responseJSON;
+    let respErrors = data.responseJSON.errors;
     let showNameError = false;
     let showPhoneError = false;
     let showEmailError = false;
     let showMessageError = false;
 
-    for (index = 0; index < resp.length; index++) {
-        if (resp[index].field === 'name') {
-            document.getElementById("nameError").innerHTML = resp[index].message;
+    for (index = 0; index < respErrors.length; index++) {
+        if (respErrors[index].field === 'name') {
+            document.getElementById("nameError").innerHTML = respErrors[index].message;
             showNameError = true;
         }
-        if (resp[index].field === 'phone') {
-            document.getElementById("phoneError").innerHTML = resp[index].message;
+        if (respErrors[index].field === 'phone') {
+            document.getElementById("phoneError").innerHTML = respErrors[index].message;
             showPhoneError = true;
         }
-        if (resp[index].field === 'email') {
-            document.getElementById("emailError").innerHTML = resp[index].message;
+        if (respErrors[index].field === 'email') {
+            document.getElementById("emailError").innerHTML = respErrors[index].message;
             showEmailError = true;
         }
-        if (resp[index].field === 'message') {
-            document.getElementById("messagelError").innerHTML = resp[index].message;
+        if (respErrors[index].field === 'message') {
+            document.getElementById("messagelError").innerHTML = respErrors[index].message;
             showMessageError = true;
         }
     }
