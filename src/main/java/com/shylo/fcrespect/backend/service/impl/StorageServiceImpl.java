@@ -67,6 +67,11 @@ public class StorageServiceImpl implements StorageService {
     }
 
     @Override
+    public Path load(String filename) {
+        return rootLocation.resolve(filename);
+    }
+
+    @Override
     public void store(MultipartFile file, UploadType type) {
         try {
             if (file.isEmpty()) {
