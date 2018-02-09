@@ -8,7 +8,7 @@ import java.nio.file.Path;
 public interface StorageService {
     void init();
 
-    void store(MultipartFile file, UploadType type);
+    Path store(MultipartFile file, UploadType type);
 
     public Path load(String filename);
 

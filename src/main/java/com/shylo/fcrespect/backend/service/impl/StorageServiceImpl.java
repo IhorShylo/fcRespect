@@ -68,9 +68,9 @@ public class StorageServiceImpl implements StorageService {
     }
 
     @Override
-    public void store(MultipartFile file, UploadType type) {
+    public Path store(MultipartFile file, UploadType type) {
         try {
-            copyFileToTypeDir(file, type);
+            return copyFileToTypeDir(file, type);
         } catch (IOException e) {
             throw new StorageException("Failed to store file " + file.getOriginalFilename(), e);
         }
@@ -81,24 +81,27 @@ public class StorageServiceImpl implements StorageService {
         FileSystemUtils.deleteRecursively(rootLocation.toFile());
     }
 
-    private void copyFileToTypeDir(MultipartFile file, UploadType type) throws IOException {
+    private Path copyFileToTypeDir(MultipartFile file, UploadType type) throws IOException {
+        Path path;
         String extension = file.getOriginalFilename().split("\\.")[1];
         switch (type) {
             case PLAYER_IMAGE:
-                Files.copy(file.getInputStream(), this.playerImgFolderName.resolve(playerImgFolderName.getFileName() +
-                        "_" + System.currentTimeMillis() + "." + extension));
+                path = this.playerImgFolderName.resolve(playerImgFolderName.getFileName() +
+                        "_" + System.currentTimeMillis() + "." + extension);
                 break;
             case NEWS_IMAGE:
-                Files.copy(file.getInputStream(), this.newsImgFolderName.resolve(newsImgFolderName.getFileName() +
-                        "_" + System.currentTimeMillis() + "." + extension));
+                path = this.newsImgFolderName.resolve(newsImgFolderName.getFileName() +
+                        "_" + System.currentTimeMillis() + "." + extension);
                 break;
             case TMP_FILE:
-                Files.copy(file.getInputStream(), this.tmpFilesFolderName.resolve(tmpFilesFolderName.getFileName() +
-                        "_" + System.currentTimeMillis() + "." + extension));
+                path = this.tmpFilesFolderName.resolve(tmpFilesFolderName.getFileName() +
+                        "_" + System.currentTimeMillis() + "." + extension);
                 break;
             default:
-                Files.copy(file.getInputStream(), this.tmpFilesFolderName.resolve(tmpFilesFolderName.getFileName() + "_" + System.currentTimeMillis() +
-                        "_" + System.currentTimeMillis() + "." + extension));
+                path = this.tmpFilesFolderName.resolve(tmpFilesFolderName.getFileName() + "_" + System.currentTimeMillis() +
+                        "_" + System.currentTimeMillis() + "." + extension);
         }
+        Files.copy(file.getInputStream(), path);
+        return path;
     }
 }

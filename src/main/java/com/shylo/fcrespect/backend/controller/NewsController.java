@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.HandlerMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.nio.file.Path;
 
 @Controller
 @RequestMapping(value = "/news")
@@ -49,9 +50,11 @@ public class NewsController {
                 HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
         LOGGER.info("Enter in controller with path - {}", restOfTheUrl);
         validationService.isFileValid(file);
-        storageService.store(file, UploadType.TMP_FILE);
+        Path tmpFilePath = storageService.store(file, UploadType.TMP_FILE);
         modelMap.addAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
+        modelMap.addAttribute("tmpFilePath", tmpFilePath);
+
         modelMap.addAttribute(ProjectConstants.CONTENT_KEY, ViewConstants.NEWS_VIEW);
         return ProjectConstants.HOME_PAGE_KEY;
     }
