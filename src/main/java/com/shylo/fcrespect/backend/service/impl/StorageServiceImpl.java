@@ -26,43 +26,39 @@ public class StorageServiceImpl implements StorageService {
     private final Path rootLocation;
     private final Path playerImgFolderName;
     private final Path newsImgFolderName;
-    private final Path otherImgFolderName;
+    private final Path tmpFilesFolderName;
 
 
     @Autowired
     public StorageServiceImpl(@Value("${files.path.root}") String fileLocation,
                               @Value("${files.path.players}") String playerImgFolderName,
                               @Value("${files.path.news}") String newsImgFolderName,
-                              @Value("${files.path.other}") String otherImgFolderName) {
+                              @Value("${files.path.tmp}") String tmpFilesFolderName) {
         this.rootLocation = Paths.get(fileLocation);
         this.playerImgFolderName = rootLocation.resolve(playerImgFolderName);
         this.newsImgFolderName = rootLocation.resolve(newsImgFolderName);
-        this.otherImgFolderName = rootLocation.resolve(otherImgFolderName);
-        init();
+        this.tmpFilesFolderName = rootLocation.resolve(tmpFilesFolderName);
     }
 
     @Override
     public void init() {
         try {
-            LOGGER.info("Trying to create dir for uploaded files with location: " + rootLocation);
-            Files.createDirectory(rootLocation);
-            LOGGER.info("Dir for uploaded files was successfully created with location: " + rootLocation);
-
-            LOGGER.info("Trying to create dir for uploaded files with location: " + playerImgFolderName);
-            Files.createDirectory(playerImgFolderName);
-            LOGGER.info("Dir for uploaded files was successfully created with location: " + playerImgFolderName);
-
-            LOGGER.info("Trying to create dir for uploaded files with location: " + newsImgFolderName);
-            Files.createDirectory(newsImgFolderName);
-            LOGGER.info("Dir for uploaded files was successfully created with location: " + newsImgFolderName);
-
-            LOGGER.info("Trying to create dir for uploaded files with location: " + otherImgFolderName);
-            Files.createDirectory(otherImgFolderName);
-            LOGGER.info("Dir for uploaded files was successfully created with location: " + otherImgFolderName);
-        } catch (FileAlreadyExistsException e) {
-            LOGGER.warn(e.getLocalizedMessage());
+            createFolder(rootLocation);
+            createFolder(playerImgFolderName);
+            createFolder(newsImgFolderName);
+            createFolder(tmpFilesFolderName);
         } catch (IOException e) {
             throw new StorageException("Could not initialize storage", e);
+        }
+    }
+
+    private void createFolder(Path path) throws IOException {
+        try {
+            LOGGER.info("Trying to create dir for uploaded files with location: " + path);
+            Files.createDirectory(path);
+            LOGGER.info("Dir for uploaded files was successfully created with location: " + path);
+        } catch (FileAlreadyExistsException e) {
+            LOGGER.warn("Directory {} already exist", path);
         }
     }
 
@@ -97,7 +93,7 @@ public class StorageServiceImpl implements StorageService {
                         "_" + System.currentTimeMillis() + "." + extension));
                 break;
             default:
-                Files.copy(file.getInputStream(), this.otherImgFolderName.resolve(otherImgFolderName.getFileName() + "_" + System.currentTimeMillis() +
+                Files.copy(file.getInputStream(), this.tmpFilesFolderName.resolve(tmpFilesFolderName.getFileName() + "_" + System.currentTimeMillis() +
                         "_" + System.currentTimeMillis() + "." + extension));
         }
     }

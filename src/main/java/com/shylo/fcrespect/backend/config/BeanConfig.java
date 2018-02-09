@@ -1,5 +1,7 @@
 package com.shylo.fcrespect.backend.config;
 
+import com.shylo.fcrespect.backend.service.StorageService;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
@@ -30,5 +32,13 @@ public class BeanConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors( InterceptorRegistry registry ) {
         registry.addInterceptor( localeChangeInterceptor() );
+    }
+
+    /*Init storage service*/
+    @Bean
+    CommandLineRunner init(StorageService storageService) {
+        return (args) -> {
+            storageService.init();
+        };
     }
 }
