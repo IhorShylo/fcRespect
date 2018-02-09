@@ -123,7 +123,7 @@ h2 {
     /* Отступ для содержимого, помещенного в splash */
     padding: 9em 0 2em;
     /* Картинка, которая используются для splash */
-    background-image: url(../assets/logo.jpg);
+    background-image: url(http://localhost/files/other/logo.jpg);
     /* Масштабируем картинку с сохранением пропорций */
     background-size: cover;
     /* Запрещаем фоновому изображению прокручиваться, т.е. делаем его неподвижным */

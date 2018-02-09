@@ -27,17 +27,20 @@ public class StorageServiceImpl implements StorageService {
     private final Path playerImgFolderName;
     private final Path newsImgFolderName;
     private final Path tmpFilesFolderName;
+    private final Path otherFilesFolderName;
 
 
     @Autowired
     public StorageServiceImpl(@Value("${files.path.root}") String fileLocation,
                               @Value("${files.path.players}") String playerImgFolderName,
                               @Value("${files.path.news}") String newsImgFolderName,
-                              @Value("${files.path.tmp}") String tmpFilesFolderName) {
+                              @Value("${files.path.tmp}") String tmpFilesFolderName,
+                              @Value("${files.path.other}") String otherFilesFolderName) {
         this.rootLocation = Paths.get(fileLocation);
         this.playerImgFolderName = rootLocation.resolve(playerImgFolderName);
         this.newsImgFolderName = rootLocation.resolve(newsImgFolderName);
         this.tmpFilesFolderName = rootLocation.resolve(tmpFilesFolderName);
+        this.otherFilesFolderName = rootLocation.resolve(otherFilesFolderName);
     }
 
     @Override
@@ -47,6 +50,7 @@ public class StorageServiceImpl implements StorageService {
             createFolder(playerImgFolderName);
             createFolder(newsImgFolderName);
             createFolder(tmpFilesFolderName);
+            createFolder(otherFilesFolderName);
         } catch (IOException e) {
             throw new StorageException("Could not initialize storage", e);
         }

@@ -25,7 +25,7 @@
                     <!--'' - current url-->
                     <li th:each="localeCode : ${localeCodes}"><a th:href="@{''(lang=${localeCode})}"
                                                                  href="../static/assets/flags/en.png">
-                        <img th:src="@{'/assets/flags/' + ${localeCode} + '.png'}" src="../static/assets/flags/en.png"
+                        <img th:src="@{'http://localhost/files/flags/' + ${localeCode} + '.png'}" src="http://localhost/files/flags/en.png"
                              title="English" th:title="#{'lang.' + ${localeCode}}"/>
                     </a></li>
                     <li><a href="#login" th:text="#{title.login}">Login</a></li>

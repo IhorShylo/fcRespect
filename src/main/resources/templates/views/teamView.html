@@ -8,8 +8,8 @@
             <div th:each="player : ${allPlayers}" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 thumbnail">
                 <a href="#" th:href="@{'/team/' + ${player.id}}"
                    class="thumbnail">
-                    <img class="players-imgs" th:src="@{'/assets/players/'+ ${player.imageName}}"
-                         src="../../static/assets/lionel-messi.jpg"
+                    <img class="players-imgs" th:src="'http://localhost/files/players/'+ ${player.imageName}"
+                         src="http://localhost/files/players/default.jpg"
                          alt="player"/>
                 </a>
             </div>
