@@ -92,6 +92,10 @@ public class StorageServiceImpl implements StorageService {
                 Files.copy(file.getInputStream(), this.newsImgFolderName.resolve(newsImgFolderName.getFileName() +
                         "_" + System.currentTimeMillis() + "." + extension));
                 break;
+            case TMP_FILE:
+                Files.copy(file.getInputStream(), this.tmpFilesFolderName.resolve(tmpFilesFolderName.getFileName() +
+                        "_" + System.currentTimeMillis() + "." + extension));
+                break;
             default:
                 Files.copy(file.getInputStream(), this.tmpFilesFolderName.resolve(tmpFilesFolderName.getFileName() + "_" + System.currentTimeMillis() +
                         "_" + System.currentTimeMillis() + "." + extension));

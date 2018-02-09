@@ -49,7 +49,7 @@ public class NewsController {
                 HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
         LOGGER.info("Enter in controller with path - {}", restOfTheUrl);
         validationService.isFileValid(file);
-        storageService.store(file, UploadType.NEWS_IMAGE);
+        storageService.store(file, UploadType.TMP_FILE);
         modelMap.addAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
         modelMap.addAttribute(ProjectConstants.CONTENT_KEY, ViewConstants.NEWS_VIEW);

@@ -1,5 +1,5 @@
 package com.shylo.fcrespect.backend.enums;
 
 public enum UploadType {
-    PLAYER_IMAGE, NEWS_IMAGE
+    PLAYER_IMAGE, NEWS_IMAGE, TMP_FILE
 }
