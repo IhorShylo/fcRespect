@@ -74,9 +74,6 @@ public class StorageServiceImpl implements StorageService {
     @Override
     public void store(MultipartFile file, UploadType type) {
         try {
-            if (file.isEmpty()) {
-                throw new StorageException("Failed to store empty file " + file.getOriginalFilename());
-            }
             copyFileToTypeDir(file, type);
         } catch (IOException e) {
             throw new StorageException("Failed to store file " + file.getOriginalFilename(), e);

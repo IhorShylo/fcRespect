@@ -9,8 +9,6 @@ import com.shylo.fcrespect.backend.dto.resp.ValidationErrorResponse;
 import com.shylo.fcrespect.backend.exception.StorageException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -19,12 +17,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.servlet.ModelAndView;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ValidationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,13 +30,6 @@ import java.util.List;
 public class ExceptionHandleAdvisor {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ContactsController.class);
-
-    private final String maxFileSize;
-
-    @Autowired
-    public ExceptionHandleAdvisor(@Value("${spring.http.multipart.max-file-size}") String maxFileSize) {
-        this.maxFileSize = maxFileSize;
-    }
 
     /*This exception appear during get method arguments validation*/
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -64,17 +55,17 @@ public class ExceptionHandleAdvisor {
 
     /*This exception appear during file upload*/
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MultipartException.class)
+    @ExceptionHandler(ValidationException.class)
     @ResponseBody
-    public ServerErrorResponse handlePostValidationException(HttpServletRequest request, MultipartException ex) {
-        LOGGER.error("url - {}, Can't upload file bigger than " + maxFileSize, request.getRequestURL(), ex);
-        return new ServerErrorResponse("Can't upload file bigger than " + maxFileSize);
+    public ServerErrorResponse handleValidationServiceException(HttpServletRequest request, ValidationException ex) {
+        LOGGER.error("url - {}, " + ex.getMessage(), request.getRequestURL(), ex);
+        return new ServerErrorResponse(ex.getMessage());
     }
 
     /*Appear when you receive invalid parameter type*/
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    public ModelAndView handleMethodArgumentTypeMismatchException(HttpServletRequest request, MethodArgumentTypeMismatchException ex){
+    public ModelAndView handleMethodArgumentTypeMismatchException(HttpServletRequest request, MethodArgumentTypeMismatchException ex) {
         LOGGER.warn("url - {}, Invalid request parameter type:", request.getRequestURL(), ex);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject(ProjectConstants.CONTENT_KEY, ViewConstants.ERROR_404_VIEW);
@@ -109,8 +100,8 @@ public class ExceptionHandleAdvisor {
     @ExceptionHandler(StorageException.class)
     @ResponseBody
     public ServerErrorResponse handleStorageException(HttpServletRequest request, StorageException ex) {
-        LOGGER.error("url - {}, Can't save file:", request.getRequestURL(), ex);
-        return new ServerErrorResponse("Can't save file");
+        LOGGER.error("url - {}, Error message: {}", request.getRequestURL(), ex.getMessage(), ex);
+        return new ServerErrorResponse(ex.getMessage());
     }
 
     /*All other errors handling*/

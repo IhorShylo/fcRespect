@@ -4,6 +4,7 @@ import com.shylo.fcrespect.backend.constants.ProjectConstants;
 import com.shylo.fcrespect.backend.constants.ViewConstants;
 import com.shylo.fcrespect.backend.enums.UploadType;
 import com.shylo.fcrespect.backend.service.StorageService;
+import com.shylo.fcrespect.backend.service.ValidationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,12 @@ public class NewsController {
 
     private final StorageService storageService;
 
+    private final ValidationService validationService;
+
     @Autowired
-    public NewsController(StorageService storageService) {
+    public NewsController(StorageService storageService, ValidationService validationService) {
         this.storageService = storageService;
+        this.validationService = validationService;
     }
 
     @RequestMapping
@@ -44,6 +48,7 @@ public class NewsController {
         String restOfTheUrl = (String) request.getAttribute(
                 HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
         LOGGER.info("Enter in controller with path - {}", restOfTheUrl);
+        validationService.isFileValid(file);
         storageService.store(file, UploadType.NEWS_IMAGE);
         modelMap.addAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
