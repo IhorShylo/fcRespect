@@ -45,7 +45,7 @@ public class ContactsController {
 
     @RequestMapping(value = "/form-process", method = RequestMethod.POST)
     @ResponseBody
-    public void processForm(@Valid @RequestBody FeedbackRequest feedback, ModelMap modelMap, HttpServletRequest request) {
+    public void processForm(@Valid @RequestBody FeedbackRequest feedback, HttpServletRequest request) {
         String restOfTheUrl = (String) request.getAttribute(
                 HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
         LOGGER.info("Enter in controller with path - {}", restOfTheUrl);
