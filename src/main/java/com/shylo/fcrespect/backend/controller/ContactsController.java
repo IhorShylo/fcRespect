@@ -12,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.HandlerMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,14 +44,13 @@ public class ContactsController {
     }
 
     @RequestMapping(value = "/form-process", method = RequestMethod.POST)
-    public String processForm(@Valid @RequestBody FeedbackRequest feedback, ModelMap modelMap, HttpServletRequest request) {
+    @ResponseBody
+    public void processForm(@Valid @RequestBody FeedbackRequest feedback, ModelMap modelMap, HttpServletRequest request) {
         String restOfTheUrl = (String) request.getAttribute(
                 HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
         LOGGER.info("Enter in controller with path - {}", restOfTheUrl);
         String text = emailService.formMailBody(feedback);
         emailService.sendSimpleMessage(HOME_MAIL, DEFAULT_SUBJECT, text);
-        modelMap.addAttribute(ProjectConstants.CONTENT_KEY, ViewConstants.CONTACTS_VIEW);
-        return ProjectConstants.HOME_PAGE_KEY;
     }
 
 }
