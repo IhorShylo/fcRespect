@@ -16,9 +16,12 @@ public class EmailServiceImpl implements EmailService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ContactsController.class);
 
+    private final JavaMailSender mailSender;
 
     @Autowired
-    JavaMailSender mailSender;
+    public EmailServiceImpl(JavaMailSender mailSender) {
+        this.mailSender = mailSender;
+    }
 
     @Override
     @Async

@@ -21,8 +21,12 @@ import java.util.List;
 public class TeamController {
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
+    private final PlayerService playerService;
+
     @Autowired
-    PlayerService playerService;
+    public TeamController(PlayerService playerService) {
+        this.playerService = playerService;
+    }
 
     @RequestMapping
     public String teamPage(ModelMap modelMap, HttpServletRequest request) {

@@ -32,11 +32,11 @@ public class NewsDaoTest {
 
     @Before
     public void init() {
-         news = News.builder()
-                .title(TITLE)
-                .creationTime(LocalDateTime.now())
-                .text(TEXT)
-                .build();
+         news = new News();
+         news.setTitle(TITLE);
+         news.setText(TEXT);
+         news.setCreationTime(LocalDateTime.now());
+
     }
 
     @Test

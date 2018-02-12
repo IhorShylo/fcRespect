@@ -26,8 +26,12 @@ public class ContactsController {
     private static final String HOME_MAIL = "igor_shilo@ukr.net";
     private static final String DEFAULT_SUBJECT = "Заявка в клуб";
 
+    private final EmailService emailService;
+
     @Autowired
-    EmailService emailService;
+    public ContactsController(EmailService emailService) {
+        this.emailService = emailService;
+    }
 
     @RequestMapping
     public String contactsPage(ModelMap modelMap, HttpServletRequest request) {

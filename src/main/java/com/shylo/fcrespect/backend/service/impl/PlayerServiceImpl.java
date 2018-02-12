@@ -3,8 +3,8 @@ package com.shylo.fcrespect.backend.service.impl;
 import com.shylo.fcrespect.backend.dao.impl.PlayerDaoImpl;
 import com.shylo.fcrespect.backend.dao.impl.PositionDaoImpl;
 import com.shylo.fcrespect.backend.dao.impl.StatisticDaoImpl;
-import com.shylo.fcrespect.backend.dto.req.PlayerCreateRequest;
-import com.shylo.fcrespect.backend.dto.req.PlayerUpdateRequest;
+import com.shylo.fcrespect.backend.dto.req.player.PlayerCreateRequest;
+import com.shylo.fcrespect.backend.dto.req.player.PlayerUpdateRequest;
 import com.shylo.fcrespect.backend.model.Player;
 import com.shylo.fcrespect.backend.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +17,18 @@ import java.util.Optional;
 @Service
 public class PlayerServiceImpl implements PlayerService {
 
-    @Autowired
-    PlayerDaoImpl playerDao;
+    private final PlayerDaoImpl playerDao;
+
+    private final StatisticDaoImpl statisticDao;
+
+    private final PositionDaoImpl positionDao;
 
     @Autowired
-    StatisticDaoImpl statisticDao;
-
-    @Autowired
-    PositionDaoImpl positionDao;
+    PlayerServiceImpl(PlayerDaoImpl playerDao, StatisticDaoImpl statisticDao, PositionDaoImpl positionDao) {
+        this.playerDao = playerDao;
+        this.statisticDao = statisticDao;
+        this.positionDao = positionDao;
+    }
 
     @Override
     public void createPlayer(PlayerCreateRequest request) {

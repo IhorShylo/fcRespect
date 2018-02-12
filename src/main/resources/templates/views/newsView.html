@@ -1,36 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:fragment="newsView" class="container-fluid">
+<div th:fragment="newsView" class="container news">
     <div class="row">
-        <div class="col-lg-3 col-md-3">
-            <!--<ul>
-                <li><a th:href="@{/news/create/upload}">Upload file</a></li>
-            </ul>-->
-
-
-            <div th:if="${message}">
-                <h2 th:text="${message}"/>
-            </div>
-
-            <div th:if="${tmpFilePath}">
-                <img th:src="'http://localhost/files/tmp/' + ${tmpFilePath.getFileName()}" />
-            </div>
-
-            <div>
-                <form method="POST" enctype="multipart/form-data" action="/news/create/upload">
-                    <table>
-                        <tr>
-                            <td>File to upload:</td>
-                            <td><input type="file" name="file"/></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="submit" value="Upload"/></td>
-                        </tr>
-                    </table>
-                </form>
-            </div>
+        <div class="col-lg-2 col-md-2">
+            <a href="#" th:href="@{/news/create}">Create player</a>
         </div>
+        <div class="col-lg-10 col-md-10 grid">
+            <div th:each="currentNews: ${news}" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 thumbnail">
+                <a href="#" th:href="@{'/news/' + ${currentNews.id}}" class="thumbnail">
+                    <img class="news-imgs" th:src="'http://localhost/files/news/'+ ${currentNews.imageName}"
+                         src="http://localhost/files/news/default.png"
+                         alt="news"/>
+                </a>
+            </div>
+
+        </div>
+
     </div>
 </div>
 </html>

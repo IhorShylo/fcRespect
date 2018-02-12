@@ -1,7 +1,9 @@
 package com.shylo.fcrespect.backend.model;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,8 +11,10 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "news")
-@Data
-@Builder
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
 public class News implements Serializable {
 
     private static final long serialVersionUID = -1503453064461116227L;

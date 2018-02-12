@@ -1,7 +1,7 @@
 package com.shylo.fcrespect.backend.service;
 
-import com.shylo.fcrespect.backend.dto.req.PlayerCreateRequest;
-import com.shylo.fcrespect.backend.dto.req.PlayerUpdateRequest;
+import com.shylo.fcrespect.backend.dto.req.player.PlayerCreateRequest;
+import com.shylo.fcrespect.backend.dto.req.player.PlayerUpdateRequest;
 import com.shylo.fcrespect.backend.model.Player;
 
 import java.util.List;

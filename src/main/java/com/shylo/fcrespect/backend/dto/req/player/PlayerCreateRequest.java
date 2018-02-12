@@ -1,4 +1,4 @@
-package com.shylo.fcrespect.backend.dto.req;
+package com.shylo.fcrespect.backend.dto.req.player;
 
 import lombok.Value;
 
