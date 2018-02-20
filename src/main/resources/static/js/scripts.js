@@ -1,8 +1,8 @@
 $(function () {
-    $("#form-submit").click(submitForm);
+    $("#contactForm-submit").click(submitContactForm);
 });
 
-function submitForm() {
+function submitContactForm() {
     // Initiate Variables With Form Content
     let request = {
         name: $("#name").val(),
@@ -17,24 +17,24 @@ function submitForm() {
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(request),
         success: function (data) {
-            formSuccess();
+            contactFormSuccess();
             $('#myModal').modal('show');
-            clearInputs();
+            contactFormClearInputs();
         },
         error: function (data) {
-            formError(data);
+            contactFormError(data);
         }
     });
 }
 
-function formSuccess() {
+function contactFormSuccess() {
     $("#nameError").addClass("hidden");
     $("#phoneError").addClass("hidden");
     $("#emailError").addClass("hidden");
     $("#messagelError").addClass("hidden");
 }
 
-function formError(data) {
+function contactFormError(data) {
     let respErrors = data.responseJSON.errors;
     let showNameError = false;
     let showPhoneError = false;
@@ -83,7 +83,7 @@ function formError(data) {
 }
 
 
-function clearInputs() {
+function contactFormClearInputs() {
     $("#name").val('');
     $("#phone").val('');
     $("#email").val('');

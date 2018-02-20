@@ -49,4 +49,16 @@ public class NewsController {
         return ProjectConstants.HOME_PAGE_KEY;
     }
 
+    @RequestMapping(value = "/save")
+    public String saveNews(ModelMap modelMap, HttpServletRequest request) {
+        String restOfTheUrl = (String) request.getAttribute(
+                HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
+        LOGGER.info("Enter in controller with path - {}", restOfTheUrl);
+
+//        String tmpFilePath = (String) modelMap.get("tmpFilePath");
+//        LOGGER.info("Saved filename - " + tmpFilePath);
+        modelMap.addAttribute(ProjectConstants.CONTENT_KEY, ViewConstants.NEWS_VIEW);
+        return ProjectConstants.HOME_PAGE_KEY;
+    }
+
 }
