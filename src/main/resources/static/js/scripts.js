@@ -14,11 +14,7 @@ function uploadForm() {
         contentType: false,
         cache: false,
         success: function (data) {
-            console.log("Success");
-            let fileName = data;
-            console.log("fileName - " + fileName);
-            let fullPath = 'http://localhost/files/tmp/' + fileName;
-            console.log("fullPath - " + fullPath);
+            let fullPath = 'http://localhost/files/tmp/' + data;
             $("#news-image").attr("src", fullPath);
         },
         error: function (data) {
