@@ -1,6 +1,31 @@
 $(function () {
     $("#contactForm-submit").click(submitContactForm);
+    $("#file").on("change", uploadForm);
 });
+
+
+function uploadForm() {
+    $.ajax({
+        type: "POST",
+        url: "/upload",
+        data: new FormData($("#uploadForm")[0]),
+        enctype: 'multipart/form-data',
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function (data) {
+            console.log("Success");
+            let fileName = data;
+            console.log("fileName - " + fileName);
+            let fullPath = 'http://localhost/files/tmp/' + fileName;
+            console.log("fullPath - " + fullPath);
+            $("#news-image").attr("src", fullPath);
+        },
+        error: function (data) {
+            console.log("Error");
+        }
+    });
+}
 
 function submitContactForm() {
     // Initiate Variables With Form Content

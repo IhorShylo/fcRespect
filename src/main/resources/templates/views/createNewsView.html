@@ -3,31 +3,14 @@
 <div th:fragment="createNewsView" class="container-fluid">
     <div class="row">
         <div class="col-lg-3 col-md-3">
-            <!--<ul>
-                <li><a th:href="@{/news/create/upload}">Upload file</a></li>
-            </ul>-->
-
-
-            <div th:if="${message}">
-                <h2 th:text="${message}"/>
-            </div>
-
-            <div th:if="${tmpFilePath}">
-                <img th:src="'http://localhost/files/tmp/' + ${tmpFilePath.getFileName()}" />
+            <div>
+                <img src="http://localhost/files/news/default.png" id="news-image"/>
             </div>
 
             <div>
-                <form method="POST" enctype="multipart/form-data" action="/upload">
-                    <table>
-                        <tr>
-                            <td>File to upload:</td>
-                            <td><input type="file" name="file"/></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="submit" value="Upload"/></td>
-                        </tr>
-                    </table>
+                <form role="form" id="uploadForm">
+                    <label for="file">File to upload:</label>
+                    <input type="file" name="file" id="file" accept="*"/>
                 </form>
             </div>
         </div>
