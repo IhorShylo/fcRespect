@@ -9,6 +9,7 @@ import com.shylo.fcrespect.backend.model.Player;
 import com.shylo.fcrespect.backend.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
+    @Transactional
     public void updatePlayer(PlayerUpdateRequest request) {
         throw new NotImplementedException();
     }
@@ -46,7 +48,9 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
+//    @Cacheable("players")
     public Optional<Player> findPlayer(Integer id) {
+//        simulateSlowService();
         return playerDao.findOne(id);
     }
 
@@ -54,4 +58,13 @@ public class PlayerServiceImpl implements PlayerService {
     public List<Player> findAllPlayer() {
         return playerDao.findAll();
     }
+
+    /*private void simulateSlowService() {
+        try {
+            long time = 3000L;
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            throw new IllegalStateException(e);
+        }
+    }*/
 }
