@@ -19,7 +19,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/team")
 public class TeamController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TeamController.class);
 
     private final PlayerService playerService;
 
