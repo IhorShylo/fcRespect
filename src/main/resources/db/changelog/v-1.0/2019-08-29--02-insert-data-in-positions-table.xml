@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <include relativeToChangelogFile="true" file="2019-08-29--01-init-schema.xml"/>
-    <include relativeToChangelogFile="true" file="2019-08-29--02-insert-data-in-positions-table.xml"/>
+    <changeSet author="ishylo" id="2019-08-29--02.01-insert-data-in-positions-table">
+        <sql>
+            INSERT INTO positions (position_id, position_value) VALUES
+            (0, 'Goalkeeper'),
+            (1, 'Defender'),
+            (2, 'Midfielder'),
+            (3, 'Forward');
+        </sql>
+    </changeSet>
 
 </databaseChangeLog>
